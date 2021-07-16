@@ -1,17 +1,25 @@
 ## ハッカソンアプリ
 
-- Golang 
-- Next.js
-- Typescript
-- MySQL
+- Golang     :1.16.6
+- Next.js    :11.0.1
+- Typescript :4.3.5
+- MySQL      :8.0
 
+## 準備
+- yarnのインストール
+- next.jsのインストール
+- dockerのインストール
+- docker-composeのインストール
+- vscodeのインストール
+- vscodeでmakefileが使えるようにセットアップ
 
 ## 環境構築と実行方法
 
-1. git clone https://github.com/creamy-inc/creamy-app.git
-2. cd creamy-app
-3. flutter pub get
-4. flutter run
+1. git clone https://github.com/shinji1095/anonymous.git
+2. cd ./front/my-app
+3. yarn install
+4. yarn dev
+5. http://localhost:3000 にアクセス
 
 
 ## 開発方法
@@ -26,7 +34,7 @@
 ## ブランチ命名規則
 
 - 新規ページ design/[ページ名]
-- 新規機能 feat/[機能名]
+- 新規機能 add/[機能名]
 - 既存機能の修正 fix/[機能名]
 - バグ修正 hotfix/[バグ名]
 - リリース release/[バージョン]
