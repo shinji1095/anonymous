@@ -1,3 +1,7 @@
+init:
+	cd ./front/my-app
+	yarn install
+
 up:
 	docker-compose up -d
 
