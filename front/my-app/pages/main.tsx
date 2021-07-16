@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Image from 'next/image';
-import CardHolder from './cardHolder';
+import CardHolder from './components/cardHolder';
 
 class Main extends Component {
     render() {
