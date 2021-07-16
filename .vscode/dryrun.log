@@ -1,0 +1,5 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make.exe: �f�B���N�g�� `d:/Projects/Go/another' �ɓ���܂�
+docker-compose up -d
+make.exe: �f�B���N�g�� `d:/Projects/Go/another' ����o�܂�
+ 
