@@ -5,10 +5,10 @@ export default class CardHolder extends Component {
     render() {
         return (
             <>
-                <Card/>
-                <Card/>
-                <Card/>
-                <Card/>
+                <Card key={1}/>
+                <Card key={2}/>
+                <Card key={3}/>
+                <Card key={4}/>
             </>
         )
     }
