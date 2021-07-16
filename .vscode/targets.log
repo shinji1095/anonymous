@@ -6,9 +6,8 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # ���Ɛ������̖ړI�ւ̓K�����̔@���Ɋւ�炸, ���ۏ؂ł�.
 
 # This program built for i386-pc-mingw32
- 
 
-# Make �f�[�^�x�[�X�o�� Fri Jul 16 13:14:15 2021
+# Make �f�[�^�x�[�X�o�� Fri Jul 16 23:29:44 2021
 
 # �ϐ�
 
@@ -57,7 +56,7 @@ CONDA_ENVS_PATH = D:\conda\envs
 # ���ϐ�
 PROGRAMDATA = C:\ProgramData
 # ���ϐ�
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-ef1d5bd3-cac3-462c-ad65-59a389f50c5c-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-73e20d6c-9b0d-4060-812a-335de0d20c64-sock
 # ���ϐ�
 VSCODE_CWD = C:\Users\shinj\AppData\Local\Programs\Microsoft VS Code
 # ���ϐ�
@@ -127,7 +126,7 @@ MAKECMDGOALS := all
 # �f�t�H���g
 MAKE_VERSION := 3.81
 # makefile �ϐ�
-.DEFAULT_GOAL := up
+.DEFAULT_GOAL := init
 # ���ϐ�
 PROGRAMFILES(X86) = C:\Program Files (x86)
 # �����ϐ�
@@ -215,7 +214,7 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-C2GKRUA
 # C:\WINDOWS\System32\WindowsPowerShell\v1.0\ (key C:/WINDOWS/System32/WindowsPowerShell/v1.0/, mtime 1618652686): 32 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # D:\AWS\cli\ (key D:/AWS/cli/, mtime 1624537904): 38 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\WINDOWS\System32\Wbem (key C:/WINDOWS/System32/Wbem, mtime 1626295889): 156 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
-# . (key d:/Projects/Next.js/anonymous, mtime 1626403568): 13 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
+# . (key d:/Projects/Next.js/anonymous, mtime 1626435871): 13 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # D:\AWS\cli (key D:/AWS/cli, mtime 1624537904): 38 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\Users\shinj\AppData\Local\Microsoft\WindowsApps (key C:/Users/shinj/AppData/Local/Microsoft/WindowsApps, mtime 1626094257): 13 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\wget\bin\wget (key C:/wget/bin/wget, mtime 1561815698): 7 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
@@ -254,7 +253,7 @@ rs:
 #  �Öك��[���̒T���͍s���܂���ł���.
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
-#  ���s����R�}���h (`makefile', 8 �s�ڂ���):
+#  ���s����R�}���h (`makefile', 12 �s�ڂ���):
 	docker-compose restart	
 	
 
@@ -277,14 +276,14 @@ up:
 #  �Öك��[���̒T���͍s���܂���ł���.
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
-#  ���s����R�}���h (`makefile', 2 �s�ڂ���):
+#  ���s����R�}���h (`makefile', 6 �s�ڂ���):
 	docker-compose up -d
 	
 
 # �^�[�Q�b�g�ł͂���܂���:
 makefile:
 #  �Öك��[���̒T�����s���܂���.
-#  �ŏI�C�� 2021-07-16 11:40:49
+#  �ŏI�C�� 2021-07-16 20:44:31
 #  �t�@�C���͍X�V����Ă��܂�.
 #  �X�V�ɐ������܂���.
 # �ϐ��Z�b�g�̃n�b�V���e�[�u���̏��:
@@ -296,16 +295,25 @@ makefile:
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
 
+init:
+#  �Öك��[���̒T���͍s���܂���ł���.
+#  �C���������`�F�b�N����邱�Ƃ͂���܂���.
+#  �t�@�C���͍X�V����Ă��܂���.
+#  ���s����R�}���h (`makefile', 2 �s�ڂ���):
+	cd ./front/my-app
+	yarn install
+	
+
 down:
 #  �Öك��[���̒T���͍s���܂���ł���.
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
-#  ���s����R�}���h (`makefile', 5 �s�ڂ���):
+#  ���s����R�}���h (`makefile', 9 �s�ڂ���):
 	docker-compose down
 	
 
 # �t�@�C���n�b�V���e�[�u���̏��:
-# Load=7/1024=1%, Rehash=0, Collisions=0/18=0%
+# Load=8/1024=1%, Rehash=0, Collisions=0/19=0%
 # VPATH �T���p�X
 
 # `vpath' �T���p�X�͂���܂���
@@ -317,7 +325,7 @@ down:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Make �f�[�^�x�[�X�I�� Fri Jul 16 13:14:15 2021
+# Make �f�[�^�x�[�X�I�� Fri Jul 16 23:29:44 2021
 
  
 make.exe: *** �^�[�Q�b�g `all' �� make ���郋�[��������܂���.  ���~.
