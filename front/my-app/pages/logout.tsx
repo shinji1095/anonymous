@@ -1,4 +1,12 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+const Logout_button = () => {
+    const router = useRouter();
+
+    return <button onClick={() => router.push("/login")}>Logout</button>
+}
 
 class Logout extends Component {
     render() {
@@ -14,9 +22,9 @@ class Logout extends Component {
                           </button>
                       </div>
                       <div className="modal-body">Select Logout below if you are ready to end your current session.</div>
-                      <div className="modal-footer">
+                   '   <div className="modal-footer">
                           <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                          <a className="btn btn-primary" href="login.html">Logout</a>
+                          <Logout_button/>
                       </div>
                   </div>
               </div>
