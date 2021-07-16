@@ -12,8 +12,8 @@ import Footer from './common/footer'
 export default class App extends Component {
     render(){
         return (
-
-        <div id="page-top">
+            
+            <div id="page-top">
             <Head>
             <meta charSet="utf-8" />
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -63,21 +63,21 @@ export default class App extends Component {
             {/*-- Logout Modal*/}
             <Logout />
             {/*-- Bootstrap core JavaScript-*/}
-            <Script src="vendor/jquery/jquery.min.js"></Script>
-            <Script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></Script>
+            <Script src="vendor/jquery/jquery.min.js" strategy="beforeInteractive"></Script>
+            <Script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></Script> 
 
             {/*-- Core plugin JavaScript-*/}
             {/* <Script src="vendor/jquery-easing/jquery.easing.min.js"></Script> */}
 
             {/*-- Custom scripts for all pages-*/}
-            {/* <Script src="js/sb-admin-2.min.js"></Script> */}
+            <Script src="js/sb-admin-2.min.js"></Script>
 
             {/*-- Page level plugins -*/}
-            {/* <Script src="vendor/chart.js/Chart.min.js"></Script> */}
+            <Script src="vendor/chart.js/Chart.min.js"></Script>
 
                 {/*-- Page level custom scripts -*/}
-                <Script src="js/demo/chart-area-demo.js"></Script>
-                <Script src="js/demo/chart-pie-demo.js"></Script>
+                {/* <Script src="js/demo/chart-area-demo.js" strategy="beforeInteractive"></Script>
+                <Script src="js/demo/chart-pie-demo.js" strategy="beforeInteractive"></Script> */}
             </div>
         );
     }
