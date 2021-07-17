@@ -9,7 +9,7 @@ services:
         tty: true
         image: backend
         volumes:
-            - ./backend:/app
+            - ./backend/anonymous_bk:/app
         ports:
             - 8080:8080
         depends_on:
@@ -37,6 +37,7 @@ services:
         build:
             context: .
             dockerfile: ./infra/DockerFile.ft
+        image: front
         volumes: 
             - ./front/my-app:/app
         ports: 
