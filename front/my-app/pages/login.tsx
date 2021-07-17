@@ -72,7 +72,9 @@ export default class Login extends Component {
                                             </form>
                                             <hr/>
                                             <div className="text-center">
-                                                <a className="small" href="forgot-password.html">Forgot Password?</a>
+                                                <Link href="/forgetPassword">
+                                                    <a className="small" href="forgot-password.html">Forgot Password?</a>
+                                                </Link>
                                             </div>
                                             <div className="text-center">
                                                 <Link href="/register">
