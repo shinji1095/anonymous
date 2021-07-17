@@ -6,12 +6,26 @@
 - MySQL      :8.0
 
 ## 準備
+- npmのインストール
+以下のサイトを参考にインストール
+https://qiita.com/taiponrock/items/9001ae194571feb63a5e
+
 - yarnのインストール
-- next.jsのインストール
+以下のサイトを参考にインストール
+https://classic.yarnpkg.com/en/docs/install/#windows-stable
+
+- next.jsの使用方法
+アプリケーションの作成方法（typescript）
+https://nextjs.org/docs
+
 - dockerのインストール
-- docker-composeのインストール
-- vscodeのインストール
+以下のサイトを参考に！
+https://qiita.com/bezeklik/items/a6a7335acaec12edda45
+
 - vscodeでmakefileが使えるようにセットアップ
+以下のサイト！
+https://qiita.com/tokikaze0604/items/e13c04192762f8d4ec85
+
 
 ## 環境構築と実行方法
 
