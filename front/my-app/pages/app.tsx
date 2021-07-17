@@ -75,9 +75,6 @@ export default class App extends Component {
             {/*-- Page level plugins -*/}
             <Script src="vendor/chart.js/Chart.min.js"></Script>
 
-                {/*-- Page level custom scripts -*/}
-                {/* <Script src="js/demo/chart-area-demo.js" strategy="beforeInteractive"></Script>
-                <Script src="js/demo/chart-pie-demo.js" strategy="beforeInteractive"></Script> */}
             </div>
         );
     }
