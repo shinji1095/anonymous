@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Script from 'next/script';
 import Head from 'next/head';
+import Link from "next/link";
 
 export default class Login extends Component {
     render() {
@@ -74,7 +75,9 @@ export default class Login extends Component {
                                                 <a className="small" href="forgot-password.html">Forgot Password?</a>
                                             </div>
                                             <div className="text-center">
-                                                <a className="small" href="register.html">Create an Account!</a>
+                                                <Link href="/register">
+                                                    <a className="small">Create an Account!</a>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
