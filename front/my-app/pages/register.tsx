@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Head from "next/head"
 import Script from 'next/script'
+import Link from 'next/link'
 
 export default class Register extends Component {
     render() {
@@ -77,10 +78,14 @@ export default class Register extends Component {
                                     </form>
                                     <hr/>
                                     <div className="text-center">
-                                        <a className="small" href="forgot-password.html">Forgot Password?</a>
+                                        <Link href="/forgetPassword">
+                                            <a className="small" href="forgot-password.html">Forgot Password?</a>
+                                        </Link>
                                     </div>
                                     <div className="text-center">
-                                        <a className="small" href="login.html">Already have an account? Login!</a>
+                                        <Link href="/login">
+                                            <a className="small">Already have an account? Login!</a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
