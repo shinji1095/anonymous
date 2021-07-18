@@ -4,6 +4,8 @@ import Script from 'next/script'
 
 export default class Register extends Component {
     render() {
+        let url = process.env.SERVER_URL + "/user"
+        console.log(url)
         return (
             <>
             <Head>
@@ -39,34 +41,34 @@ export default class Register extends Component {
                                     <div className="text-center">
                                         <h1 className="h4 text-gray-900 mb-4">Create an Account!</h1>
                                     </div>
-                                    <form className="user">
+                                    <form className="user" method="post" action={url}>
                                         <div className="form-group row">
                                             <div className="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" className="form-control form-control-user" id="exampleFirstName"
-                                                    placeholder="First Name"/>
+                                                    placeholder="First Name" name="firstname"/>
                                             </div>
                                             <div className="col-sm-6">
                                                 <input type="text" className="form-control form-control-user" id="exampleLastName"
-                                                    placeholder="Last Name"/>
+                                                    placeholder="Last Name" name="lastname"/>
                                             </div>
                                         </div>
                                         <div className="form-group">
                                             <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                                placeholder="Email Address"/>
+                                                placeholder="Email Address" name="email"/>
                                         </div>
                                         <div className="form-group row">
                                             <div className="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="password" className="form-control form-control-user"
-                                                    id="exampleInputPassword" placeholder="Password"/>
+                                                    id="exampleInputPassword" placeholder="Password" name="password"/>
                                             </div>
                                             <div className="col-sm-6">
                                                 <input type="password" className="form-control form-control-user"
                                                     id="exampleRepeatPassword" placeholder="Repeat Password"/>
                                             </div>
                                         </div>
-                                        <a href="login.html" className="btn btn-primary btn-user btn-block">
+                                        <button type="submit" className="btn btn-primary btn-user btn-block">
                                             Register Account
-                                        </a>
+                                        </button>
                                         <hr/>
                                         <a href="index.html" className="btn btn-google btn-user btn-block">
                                             <i className="fab fa-google fa-fw"></i> Register with Google
