@@ -1,10 +1,25 @@
 import React, { Component } from 'react'
+import { useEffect } from 'react'
 import Head from "next/head"
 import Script from 'next/script'
 import Link from 'next/link'
 
-export default class Register extends Component {
-    render() {
+export default function Register() {
+    let url = process.env.SERVER_URL
+    // useEffect(() => {
+    //     let form = document.forms[0];
+    //     form.onsubmit = () => {
+    //         form.password.setCustomValidity("");
+    //         // パスワードの一致確認
+    //         alert(form.password.value)
+    //         alert(form.passwordConfirm.value)
+    //         if (form.password.value != form.passwordConfirm.value) {
+    //         // 一致していなかったら、エラーメッセージを表示する
+    //         form.password.setCustomValidity("パスワードと確認用パスワードが一致しません");
+    //         }
+    //     }
+    // })
+
         return (
             <>
             <Head>
@@ -40,34 +55,34 @@ export default class Register extends Component {
                                     <div className="text-center">
                                         <h1 className="h4 text-gray-900 mb-4">Create an Account!</h1>
                                     </div>
-                                    <form className="user">
+                                    <form className="user" method="post" action={url}>
                                         <div className="form-group row">
                                             <div className="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" className="form-control form-control-user" id="exampleFirstName"
-                                                    placeholder="First Name"/>
+                                                    placeholder="First Name" name="firstname" required/>
                                             </div>
                                             <div className="col-sm-6">
                                                 <input type="text" className="form-control form-control-user" id="exampleLastName"
-                                                    placeholder="Last Name"/>
+                                                    placeholder="Last Name" name="lastname" required/>
                                             </div>
                                         </div>
                                         <div className="form-group">
                                             <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                                placeholder="Email Address"/>
+                                                placeholder="Email Address" name="email" required/>
                                         </div>
                                         <div className="form-group row">
                                             <div className="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="password" className="form-control form-control-user"
-                                                    id="exampleInputPassword" placeholder="Password"/>
+                                                    id="exampleInputPassword" placeholder="Password" name="password" required/>
                                             </div>
                                             <div className="col-sm-6">
                                                 <input type="password" className="form-control form-control-user"
-                                                    id="exampleRepeatPassword" placeholder="Repeat Password"/>
+                                                    id="exampleRepeatPassword" placeholder="Repeat Password" name="passwordConfirm" required/>
                                             </div>
                                         </div>
-                                        <a href="login.html" className="btn btn-primary btn-user btn-block">
+                                        <button type="submit" className="btn btn-primary btn-user btn-block">
                                             Register Account
-                                        </a>
+                                        </button>
                                         <hr/>
                                         <a href="index.html" className="btn btn-google btn-user btn-block">
                                             <i className="fab fa-google fa-fw"></i> Register with Google
@@ -109,4 +124,4 @@ export default class Register extends Component {
         </>
         )
     }
-}
+
