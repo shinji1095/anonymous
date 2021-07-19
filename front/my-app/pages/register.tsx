@@ -1,25 +1,71 @@
-import React, { Component } from 'react'
-import { useEffect } from 'react'
+import React, { Component, ReactEventHandler } from 'react'
+import { useState } from 'react'
+import { useCallback } from 'react'
+import { useRouter } from 'next/router'
 import Head from "next/head"
 import Script from 'next/script'
 import Link from 'next/link'
 
+interface UserData{
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string
+}
+const initUserData: UserData = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: ""
+}
+
 export default function Register() {
     let url = process.env.SERVER_URL
-    // useEffect(() => {
-    //     let form = document.forms[0];
-    //     form.onsubmit = () => {
-    //         form.password.setCustomValidity("");
-    //         // パスワードの一致確認
-    //         alert(form.password.value)
-    //         alert(form.passwordConfirm.value)
-    //         if (form.password.value != form.passwordConfirm.value) {
-    //         // 一致していなかったら、エラーメッセージを表示する
-    //         form.password.setCustomValidity("パスワードと確認用パスワードが一致しません");
-    //         }
-    //     }
-    // })
+    const router = useRouter()
+    const [userData, setUserData] = useState<UserData>(initUserData);
+    const handleChangeFunc = (dataname: string) => {
+        const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+            let value = e.target.value;
+            switch (dataname){
+                case "firstname":
+                    setUserData({...userData, firstname:value})
+                    break;
+                case "lastname":
+                    setUserData({...userData, lastname:value})
+                    break;
+                case "email":
+                    setUserData({...userData, email:value})
+                    break;
+                case "password":
+                    setUserData({...userData, password: value})
+                    break;
+            }
+        }
+        return handleChange
+    }
+    const handleClick = useCallback(() => {
+        let url = "/api/user";
+        console.log(userData)
+        const config = {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify(userData)
+        }
+        fetch(url, config)
+        .then(data => data.json())
+        .then(json => {
+            console.log(json)
+            if (json.status){
+                alert("register complete!")
+                router.push("/app")
+            }
+        })
+        .catch(err => console.log(err))
 
+    }, [userData])
         return (
             <>
             <Head>
@@ -55,32 +101,32 @@ export default function Register() {
                                     <div className="text-center">
                                         <h1 className="h4 text-gray-900 mb-4">Create an Account!</h1>
                                     </div>
-                                    <form className="user" method="post" action={url}>
+                                    <div className="user">
                                         <div className="form-group row">
                                             <div className="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="text" className="form-control form-control-user" id="exampleFirstName"
-                                                    placeholder="First Name" name="firstname" required/>
+                                                    placeholder="First Name" name="firstname" required onChange={handleChangeFunc("firstname")}/>
                                             </div>
                                             <div className="col-sm-6">
                                                 <input type="text" className="form-control form-control-user" id="exampleLastName"
-                                                    placeholder="Last Name" name="lastname" required/>
+                                                    placeholder="Last Name" name="lastname" required onChange={handleChangeFunc("lastname")}/>
                                             </div>
                                         </div>
                                         <div className="form-group">
                                             <input type="email" className="form-control form-control-user" id="exampleInputEmail"
-                                                placeholder="Email Address" name="email" required/>
+                                                placeholder="Email Address" name="email" required onChange={handleChangeFunc("email")}/>
                                         </div>
                                         <div className="form-group row">
                                             <div className="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="password" className="form-control form-control-user"
-                                                    id="exampleInputPassword" placeholder="Password" name="password" required/>
+                                                    id="exampleInputPassword" placeholder="Password" name="password" required onChange={handleChangeFunc("password")}/>
                                             </div>
                                             <div className="col-sm-6">
                                                 <input type="password" className="form-control form-control-user"
                                                     id="exampleRepeatPassword" placeholder="Repeat Password" name="passwordConfirm" required/>
                                             </div>
                                         </div>
-                                        <button type="submit" className="btn btn-primary btn-user btn-block">
+                                        <button type="submit" className="btn btn-primary btn-user btn-block" onClick={handleClick}>
                                             Register Account
                                         </button>
                                         <hr/>
@@ -90,7 +136,7 @@ export default function Register() {
                                         <a href="index.html" className="btn btn-facebook btn-user btn-block">
                                             <i className="fab fa-facebook-f fa-fw"></i> Register with Facebook
                                         </a>
-                                    </form>
+                                    </div>
                                     <hr/>
                                     <div className="text-center">
                                         <Link href="/forgetPassword">

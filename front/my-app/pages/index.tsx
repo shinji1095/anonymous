@@ -6,7 +6,8 @@ import App from './app';
 import { Login } from './login';
 
 const Index = () => {
-    const [login, setLogin] = useState<boolean>(false)
+    const [login, setLogin] = useState<boolean>(false);
+    const [userID, setUserID] = useState<number>(0);
     const setLoginFunc = (login: boolean):void =>{
         alert("called!")
         setLogin(login)

@@ -141,3 +141,5 @@ export const Login: FC<{setLoginFunc: (login: boolean) => void
         </>
     )
 }
+
+export default Login
