@@ -8,11 +8,12 @@ import { Login } from './login';
 const Index = () => {
     const [login, setLogin] = useState<boolean>(false)
     const setLoginFunc = (login: boolean):void =>{
-        setLogin(!login)
+        alert("called!")
+        setLogin(login)
     }
     return (
         <>
-            {!login ? <Login login={login} setLoginFunc={setLoginFunc}/> :<App/>}
+            {!login ? <Login setLoginFunc={setLoginFunc}/> :<App/>}
         </>
     );
 }

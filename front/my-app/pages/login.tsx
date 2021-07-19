@@ -1,31 +1,49 @@
 import Script from 'next/script';
 import Head from 'next/head';
 import Link from "next/link";
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
+import { useState } from 'react';
 import { FC } from 'react';
 
-export const Login: FC<{
-                        login: boolean, 
-                        setLoginFunc: (login: boolean) => void
-                    }> = ({
-                        login,
-                        setLoginFunc
-                    }) => {
+interface UserData {
+  email: string
+  password: string
+}
+
+export const Login: FC<{setLoginFunc: (login: boolean) => void
+                    }> = ({setLoginFunc}) => {
+
+    const [userData, setUserData] = useState<UserData>({email:"",password:""})
+    const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUserData({...userData, email: e.target.value});
+    }
+    const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setUserData({...userData, password:e.target.value})
+    }
 
     let onClick = useCallback(() => {
-        let url: string = process.env.SERVER_URL + "/validate/user";
+        let url: string = "/api/validate/user";
+
+        alert(userData)
+        console.log(userData)
+
         const config = {
-            method: "POST"
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(userData)
         }
         fetch(url, config)
         .then(data => data.json())
         .then(data => {
             if (data.status){
-                setLoginFunc(login)
+                setLoginFunc(true)
             }
-
         })
-    }, [])
+        .catch(err => console.log(err))
+    }, [userData])
     return (
         <>
             <Head>
@@ -63,15 +81,15 @@ export const Login: FC<{
                                         <div className="text-center">
                                             <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                         </div>
-                                        <form className="user">
+                                        <div className="user">
                                             <div className="form-group">
                                                 <input type="email" className="form-control form-control-user"
                                                     id="exampleInputEmail" aria-describedby="emailHelp"
-                                                    placeholder="Enter Email Address..." required/>
+                                                    placeholder="Enter Email Address..." required onChange={onChangeEmail}></input>
                                             </div>
                                             <div className="form-group">
                                                 <input type="password" className="form-control form-control-user"
-                                                    id="exampleInputPassword" placeholder="Password" required/>
+                                                    id="exampleInputPassword" placeholder="Password" required onChange={onChangePassword}></input>
                                             </div>
                                             <div className="form-group">
                                                 <div className="custom-control custom-checkbox small">
@@ -90,7 +108,7 @@ export const Login: FC<{
                                             <a href="index.html" className="btn btn-facebook btn-user btn-block">
                                                 <i className="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                             </a>
-                                        </form>
+                                        </div>
                                         <hr/>
                                         <div className="text-center">
                                             <Link href="/forgetPassword">
