@@ -4,10 +4,10 @@ import Link from 'next/link'
 import Script from 'next/script'
 import { Component } from 'react'
 
-import Sidebar from './common/sidebar';
+import Sidebar from '../common/sidebar';
 import Main from './main';
 import Logout from '../components/logout';
-import Footer from './common/footer'
+import Footer from '../common/footer'
 
 export default class App extends Component {
     render(){

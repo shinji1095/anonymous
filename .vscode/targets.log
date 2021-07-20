@@ -6,8 +6,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # ���Ɛ������̖ړI�ւ̓K�����̔@���Ɋւ�炸, ���ۏ؂ł�.
 
 # This program built for i386-pc-mingw32
+ 
 
-# Make �f�[�^�x�[�X�o�� Fri Jul 16 23:29:44 2021
+# Make �f�[�^�x�[�X�o�� Tue Jul 20 09:03:04 2021
 
 # �ϐ�
 
@@ -44,6 +45,8 @@ PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 # makefile �ϐ� (`makefile', 1 �s�ڂ���)
 MAKEFILE_LIST :=  makefile
 # ���ϐ�
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# ���ϐ�
 TMP = C:\Users\shinj\AppData\Local\Temp
 # ���ϐ�
 VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
@@ -56,13 +59,13 @@ CONDA_ENVS_PATH = D:\conda\envs
 # ���ϐ�
 PROGRAMDATA = C:\ProgramData
 # ���ϐ�
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-73e20d6c-9b0d-4060-812a-335de0d20c64-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-fcef570c-48f9-4a96-b4e4-f5575c989de9-sock
 # ���ϐ�
 VSCODE_CWD = C:\Users\shinj\AppData\Local\Programs\Microsoft VS Code
 # ���ϐ�
 GOPROXY = https://proxy.golang.org,direct
 # ���ϐ�
-PATH = C:\Program Files\ffmpeg-4.1.3-win64-static\bin;C:\Program Files\Git\cmd;C:\wget\bin\wget;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\xampp\php;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;D:\AWS\cli\;C:\Program Files (x86)\Mercurial;D:\Go\bin;C:\Users\shinj\AppData\Local\Microsoft\WindowsApps;C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;C:\tools\sqlite3;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\shinj\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\shinj\AppData\Roaming\npm;C:\Program Files\PostgreSQL\12\bin;C:\Users\shinj\Flutter\flutter\bin;C:\Users\shinj\ngrok;C:\Users\shinj\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\GnuWin32\bin;D:\GCP\google-cloud-sdk\bin;D:\GCP\google-cloud-sdk\bin:$PATH;D:\AWS\cli;C:\MinGW\msys\1.0\bin;C:\MinGW\bin;D:\LLVM\bin;C:\Users\shinj\go\bin
+PATH = C:\Program Files\ffmpeg-4.1.3-win64-static\bin;C:\Program Files\Git\cmd;C:\wget\bin\wget;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\xampp\php;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;D:\AWS\cli\;C:\Program Files (x86)\Mercurial;D:\Go\bin;C:\Users\shinj\AppData\Local\Microsoft\WindowsApps;C:\Program Files\mingw-w64\x86_64-8.1.0-posix-seh-rt_v6-rev0\mingw64\bin;C:\tools\sqlite3;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Users\shinj\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\shinj\AppData\Roaming\npm;C:\Program Files\PostgreSQL\12\bin;C:\Users\shinj\Flutter\flutter\bin;C:\Users\shinj\ngrok;C:\Users\shinj\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\GnuWin32\bin;D:\GCP\google-cloud-sdk\bin;D:\GCP\google-cloud-sdk\bin:$PATH;D:\AWS\cli;C:\MinGW\msys\1.0\bin;C:\MinGW\bin;D:\LLVM\bin;C:\Users\shinj\go\bin;
 # ���ϐ�
 COMMONPROGRAMW6432 = C:\Program Files\Common Files
 # ���ϐ�
@@ -88,7 +91,7 @@ NVTOOLSEXT_PATH = C:\Program Files\NVIDIA Corporation\NvToolsExt\
 # �����ϐ�
 %F = $(notdir $%)
 # ���ϐ�
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_20752_KAGKPQMJKHCKAELU
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_10568_NDXCGCXLXNOGMRZQ
 # ���ϐ�
 VSCODE_PIPE_LOGGING = true
 # ���ϐ�
@@ -113,6 +116,8 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
 # ���ϐ�
 LOGONSERVER = \\DESKTOP-C2GKRUA
+# makefile �ϐ� (`makefile', 1 �s�ڂ���)
+db_container = anonymous_db_1
 # ���ϐ�
 ONEDRIVECONSUMER = C:\Users\shinj\OneDrive
 # ���ϐ�
@@ -126,7 +131,7 @@ MAKECMDGOALS := all
 # �f�t�H���g
 MAKE_VERSION := 3.81
 # makefile �ϐ�
-.DEFAULT_GOAL := init
+.DEFAULT_GOAL := up
 # ���ϐ�
 PROGRAMFILES(X86) = C:\Program Files (x86)
 # �����ϐ�
@@ -196,11 +201,13 @@ LANG = C
 # ���ϐ�
 PROCESSOR_LEVEL = 6
 # ���ϐ�
-VSCODE_PID = 20752
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# ���ϐ�
+VSCODE_PID = 10568
 # ���ϐ�
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-C2GKRUA
 # �ϐ��Z�b�g�̃n�b�V���e�[�u���̏��:
-# Load=94/1024=9%, Rehash=0, Collisions=10/113=9%
+# Load=97/1024=9%, Rehash=0, Collisions=10/116=9%
 
 # Pattern-specific Variable Values
 
@@ -214,7 +221,7 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-C2GKRUA
 # C:\WINDOWS\System32\WindowsPowerShell\v1.0\ (key C:/WINDOWS/System32/WindowsPowerShell/v1.0/, mtime 1618652686): 32 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # D:\AWS\cli\ (key D:/AWS/cli/, mtime 1624537904): 38 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\WINDOWS\System32\Wbem (key C:/WINDOWS/System32/Wbem, mtime 1626295889): 156 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
-# . (key d:/Projects/Next.js/anonymous, mtime 1626435871): 13 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
+# . (key d:/Projects/Next.js/anonymous, mtime 1626669270): 13 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # D:\AWS\cli (key D:/AWS/cli, mtime 1624537904): 38 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\Users\shinj\AppData\Local\Microsoft\WindowsApps (key C:/Users/shinj/AppData/Local/Microsoft/WindowsApps, mtime 1626094257): 13 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\wget\bin\wget (key C:/wget/bin/wget, mtime 1561815698): 7 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
@@ -235,13 +242,13 @@ USERDOMAIN_ROAMINGPROFILE = DESKTOP-C2GKRUA
 # C:\Program Files\dotnet\ (key C:/Program Files/dotnet/, mtime 1607068717): 8 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\ProgramData\DockerDesktop\version-bin (key C:/ProgramData/DockerDesktop/version-bin, mtime 1621154802): 2 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\Program Files\Git\cmd (key C:/Program Files/Git/cmd, mtime 1561802016): 8 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
-# C:\WINDOWS\system32 (key C:/WINDOWS/system32, mtime 1626406408): 2971 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
+# C:\WINDOWS\system32 (key C:/WINDOWS/system32, mtime 1626739146): 2971 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\Program Files (x86)\Mercurial (key C:/Program Files (x86)/Mercurial, mtime 1624980350): 25 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
-# D:\Go\bin (key D:/Go/bin, mtime 1626407222): 4 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
+# D:\Go\bin (key D:/Go/bin, mtime 1626496468): 14 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\Users\shinj\AppData\Local\Programs\Microsoft VS Code\bin (key C:/Users/shinj/AppData/Local/Programs/Microsoft VS Code/bin, mtime 1626390572): 4 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 # C:\Users\shinj\AppData\Roaming\npm (key C:/Users/shinj/AppData/Roaming/npm, mtime 1620815945): 48 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C����.
 
-# 3800 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C���� (32 �̃f�B���N�g����).
+# 3810 �̃t�@�C��, 0 �̓K�p�s�\�t�@�C���� (32 �̃f�B���N�g����).
 
 # �Öك��[��
 
@@ -253,8 +260,16 @@ rs:
 #  �Öك��[���̒T���͍s���܂���ł���.
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
-#  ���s����R�}���h (`makefile', 12 �s�ڂ���):
+#  ���s����R�}���h (`makefile', 10 �s�ڂ���):
 	docker-compose restart	
+	
+
+migrate-rollback:
+#  �Öك��[���̒T���͍s���܂���ł���.
+#  �C���������`�F�b�N����邱�Ƃ͂���܂���.
+#  �t�@�C���͍X�V����Ă��܂���.
+#  ���s����R�}���h (`makefile', 19 �s�ڂ���):
+	curl -X GET http://localhost:8080/migrate/down
 	
 
 # �^�[�Q�b�g�ł͂���܂���:
@@ -276,18 +291,26 @@ up:
 #  �Öك��[���̒T���͍s���܂���ł���.
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
-#  ���s����R�}���h (`makefile', 6 �s�ڂ���):
+#  ���s����R�}���h (`makefile', 4 �s�ڂ���):
 	docker-compose up -d
 	
 
 # �^�[�Q�b�g�ł͂���܂���:
 makefile:
 #  �Öك��[���̒T�����s���܂���.
-#  �ŏI�C�� 2021-07-16 20:44:31
+#  �ŏI�C�� 2021-07-19 13:34:30
 #  �t�@�C���͍X�V����Ă��܂�.
 #  �X�V�ɐ������܂���.
 # �ϐ��Z�b�g�̃n�b�V���e�[�u���̏��:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+migrate:
+#  �Öك��[���̒T���͍s���܂���ł���.
+#  �C���������`�F�b�N����邱�Ƃ͂���܂���.
+#  �t�@�C���͍X�V����Ă��܂���.
+#  ���s����R�}���h (`makefile', 16 �s�ڂ���):
+	curl -X GET http://localhost:8080/migrate/up
+	
 
 # �^�[�Q�b�g�ł͂���܂���:
 .SUFFIXES:
@@ -295,25 +318,34 @@ makefile:
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
 
-init:
+exec-db:
 #  �Öك��[���̒T���͍s���܂���ł���.
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
-#  ���s����R�}���h (`makefile', 2 �s�ڂ���):
-	cd ./front/my-app
-	yarn install
+#  ���s����R�}���h (`makefile', 13 �s�ڂ���):
+	docker exec -it $(db_container) bash
 	
 
 down:
 #  �Öك��[���̒T���͍s���܂���ł���.
 #  �C���������`�F�b�N����邱�Ƃ͂���܂���.
 #  �t�@�C���͍X�V����Ă��܂���.
-#  ���s����R�}���h (`makefile', 9 �s�ڂ���):
+#  ���s����R�}���h (`makefile', 7 �s�ڂ���):
 	docker-compose down
 	
 
+test-user-reg:
+#  �Öك��[���̒T���͍s���܂���ł���.
+#  �C���������`�F�b�N����邱�Ƃ͂���܂���.
+#  �t�@�C���͍X�V����Ă��܂���.
+#  ���s����R�}���h (`makefile', 22 �s�ڂ���):
+	curl -X POST http://localhost:8080/user \
+	-H 'Content-Type: application/json' \
+	-d '{"firstname":"eto","lastname":"shinji", "password":"ppp", "email":"joe@invalid-domain"}'
+	
+
 # �t�@�C���n�b�V���e�[�u���̏��:
-# Load=8/1024=1%, Rehash=0, Collisions=0/19=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/22=0%
 # VPATH �T���p�X
 
 # `vpath' �T���p�X�͂���܂���
@@ -325,7 +357,7 @@ down:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Make �f�[�^�x�[�X�I�� Fri Jul 16 23:29:44 2021
+# Make �f�[�^�x�[�X�I�� Tue Jul 20 09:03:04 2021
 
  
 make.exe: *** �^�[�Q�b�g `all' �� make ���郋�[��������܂���.  ���~.

@@ -23,15 +23,11 @@ export const Login: FC<{setLoginFunc: (login: boolean) => void
 
     let onClick = useCallback(() => {
         let url: string = "/api/validate/user";
-
-        alert(userData)
-        console.log(userData)
-
         const config = {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
-                "Content-Type": "application/json; charset=utf-8",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(userData)
         }
