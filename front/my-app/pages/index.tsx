@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
 import App from './app';
-import Login from './login';
+import { Login } from './login';
 
-class Index extends Component {
-    render() {
-        return (
-            <div>
-                <Link href="/">
-                    <App />
-                </Link>
-            </div>
-        );
+const Index = () => {
+    const [login, setLogin] = useState<boolean>(false);
+    const [userID, setUserID] = useState<number>(0);
+    const setLoginFunc = (login: boolean):void =>{
+        alert("called!")
+        setLogin(login)
     }
+    return (
+        <>
+            {!login ? <Login setLoginFunc={setLoginFunc}/> :<App/>}
+        </>
+    );
 }
 
-export default Index;
+export default Index

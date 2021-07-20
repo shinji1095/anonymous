@@ -7,28 +7,49 @@ export const ScoreContext = React.createContext();
 
 export default function MainChart(){
     
-    const date=moment().format('YYYY-MM-DD')
+    
+    const today=moment().format('YYYY-MM-DD')
+    const url='http://localhost:8080/do?'//定数
 
-    interface dataSore{
-        day: number[]
-        total: number[]
-    }
-    const url='/do?'//定数
     const params = {
         userID: "1",//定数 
-        year: moment(date).year().toString(),
-        month: moment(date).month().toString()
+        year: moment(today).year().toString(),
+        month: moment(today).month().toString()
     }
+    const query_params = new URLSearchParams(params)
+
+    interface dataScore{//objectでcontextしたい
+        days: number[];
+        daysScore: number[];
+        total: number[];
+    }
+
+    const dayInMonth=moment(today).daysInMonth()
+    let score: dataScore={
+        days: [...Array(dayInMonth)].map(()=>0),
+        daysScore: [...Array(dayInMonth)].map(()=>0),
+        total: []
+    };
+
+    // const dayEnd=moment(today).date()
+    // let day = 1;
+
+    // do {
+    //     score.days.push(day);
+    //     day +=1 ;
+    // }
+    // while (day <= dayEnd);
     
-    let score: dataSore
-    // const ScoreContext = React.createContext(0);
+    
     const [error, setError] = useState<any | null>(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [status, setStatus] = useState(false);
+
+
+    // const ScoreContext = React.createContext(0);
     // const [message, setMessage] = useState("");
     // const [scores, setScores] = useState(0);
 
-    const query_params = new URLSearchParams(params)
     useEffect(()=>{
         fetch(url+query_params)
             .then(res => res.json())
@@ -37,20 +58,26 @@ export default function MainChart(){
                     setStatus(json.status);
                     // setMessage(json.message);
                     json.data.map(data =>{
-                        const dayInMonth=moment(data.updateAt).daysInMonth()//今月は何日あるか
-                        const indexDate=moment(data.updateAt).date();
+                        // const dayInMonth=moment(data.updateAt).daysInMonth()//今月は何日あるか
+                        const indexDate=moment(data.updateAt).date()-1;
                         if(data.ranking==1){
-                            score.total[indexDate]+=5-data.ranking;//5-data.rankingでポイント
+                            score.daysScore[indexDate]+=(5-data.ranking);//5-data.rankingでポイント
                         }else if(data.ranking==2){
-                            score.total[indexDate]+=5-data.ranking;
+                            score.daysScore[indexDate]+=(5-data.ranking);
                         }else if(data.ranking==3){
-                            score.total[indexDate]+=5-data.ranking;
+                            score.daysScore[indexDate]+=(5-data.ranking);
                         }else{
-                            score.total[indexDate]+=5-data.ranking;
+                            score.daysScore[indexDate]+=(5-data.ranking);
                         }
                     })
+                    let total=0;
+                    score.daysScore.map(scoreDay=>{
+                        total+=scoreDay;
+                        score.total.push(total);
+                    })
+
                     setIsLoaded(true);
-                }
+                },
                 (error) => {
                     setIsLoaded(true);
                     setError(error);
@@ -68,7 +95,7 @@ export default function MainChart(){
                 <div className="card shadow mb-4">
                     <MainChartHeader/>
                     <div className="card-body">
-                        <ScoreContext.Provider value={{score.total}}>
+                        <ScoreContext.Provider value={score}>
                         <MainChartBody />
                         </ScoreContext.Provider>
                     </div>

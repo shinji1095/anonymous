@@ -13,11 +13,11 @@ export default class MainChartBody extends Component {
     render() {
         const score = useContext(ScoreContext);
         const data = {
-            labels: ["Mon","Tue","Wed","Thu","Fir","Sat","Sun"],
+            labels: score.days,
             datasets: [
                 {
                     label: "Demo line plot",
-                    data: score,
+                    data: score.total,
                     // chart-area-demo.jsのコピペ
                     lineTension: 0.3,
                     backgroundColor: "rgba(78, 115, 223, 0.05)",
@@ -106,7 +106,7 @@ export default class MainChartBody extends Component {
             <div className="chart-area">
                 {/* <canvas id="myAreaChart"> */}
                 <canvas id="mainChart">
-                    <Line data={data} options={options} />
+                    <Line type={Line} data={data} options={options} />
                 </canvas>
             </div>
         );
