@@ -3,7 +3,7 @@ import CardHolder from '../components/cardHolder';
 import MainChart from '../components/mainChart';
 import SubChart from '../components/subChart';
 import DarbyChart from '../components/darbyChart';
-import {Topbar} from './common/topbar';
+import {Topbar} from '../common/topbar';
 
 class Main extends Component {
     render() {

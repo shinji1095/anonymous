@@ -23,9 +23,6 @@ export const Login: FC<{setLoginFunc: (login: boolean) => void
 
     let onClick = useCallback(() => {
         let url: string = "/api/validate/user";
-
-        alert(userData)
-
         const config = {
             method: "POST",
             headers: {
