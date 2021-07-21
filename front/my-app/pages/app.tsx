@@ -5,6 +5,7 @@ import Script from 'next/script'
 
 import { useState } from 'react'
 
+import { Topbar } from '../common/topbar'
 import Sidebar from '../common/sidebar';
 import Main from './main';
 import Logout from '../components/logout';
@@ -13,6 +14,9 @@ import Groupreg from './groupReg'
 
 export const App = () => {
     const [groupID, setGroupID] = useState<number | null>();
+    const setGroupIDFunc = (groupID:number):void => {
+        setGroupID(groupID)
+    }
     return (
         
         <div id="page-top">
@@ -42,10 +46,13 @@ export const App = () => {
 
             {/*-- Content Wrapper */}
             <div id="content-wrapper" className="d-flex flex-column">
+                {/*-- Topbar */}
+                <Topbar/>
+                {/*-- End of Topbar */}
 
                 {/*-- Main Content */}
                 {
-                    groupID ? <Main />: <Groupreg/>
+                    groupID ? <Main />: <Groupreg setGroupIDFunc={setGroupIDFunc}/>
                 }
                 {/*-- End of Main Content */}
 
