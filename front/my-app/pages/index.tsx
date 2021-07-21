@@ -9,7 +9,6 @@ const Index = () => {
     const [login, setLogin] = useState<boolean>(false);
     const [userID, setUserID] = useState<number>(0);
     const setLoginFunc = (login: boolean):void =>{
-        alert("called!")
         setLogin(login)
     }
     return (
