@@ -1,106 +1,99 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState,useEffect} from 'react';
 import moment from 'moment'
 import MainChartBody from './mainChartBody'
 import MainChartHeader from './mainChartHeader'
 
-export const ScoreContext = React.createContext();
+export const TitleContext = React.createContext<string>("");
+export const DaysContext = React.createContext<number[]>([]);
+export const TotalScoreContext = React.createContext<number[]>([]);
 
-export default function MainChart(){
+const getDaysArrayByMonth=(dayInMonth:number)=>{
+    const arrDays = [];
+    for(let i=1;i<=dayInMonth; i++)arrDays.push(i);
+    return arrDays;
+}
+
+export const MainChart = () =>{
     
-    
-    const today=moment().format('YYYY-MM-DD')
-    const url='http://localhost:8080/do?'//定数
-
-    const params = {
-        userID: "1",//定数 
-        year: moment(today).year().toString(),
-        month: moment(today).month().toString()
-    }
-    const query_params = new URLSearchParams(params)
-
-    interface dataScore{//objectでcontextしたい
+    interface dataScore{
         days: number[];
         daysScore: number[];
         total: number[];
     }
+    const [today, setToday] = useState<string>("");
+    const [days, setDays] = useState<number[]>([]);
+    const [total, setTotal] = useState<number[]>([]);
 
-    const dayInMonth=moment(today).daysInMonth()
-    let score: dataScore={
-        days: [...Array(dayInMonth)].map(()=>0),
-        daysScore: [...Array(dayInMonth)].map(()=>0),
-        total: []
-    };
+    useEffect(() => {
+        const today=moment().format('YYYY-MM-DD')
+        const dayInMonth=moment(today).daysInMonth()
+        
+        const params = {
+            userID: "1",//定数 
+            year: moment(today).year().toString(),
+            month: (moment(today).month()+1).toString()
+        }
+        
+        let score: dataScore={
+            days: getDaysArrayByMonth(dayInMonth),
+            daysScore: [...Array(moment(today).date())].map(()=>0),
+            total: []
+        };
+        
+        const url=`api/do?userID=${params.userID}\&year=${params.year}\&month=${params.month}`//定数
+        
+        const config = {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                "Content-Type": "application/json",
+            },
+        }
 
-    // const dayEnd=moment(today).date()
-    // let day = 1;
-
-    // do {
-    //     score.days.push(day);
-    //     day +=1 ;
-    // }
-    // while (day <= dayEnd);
-    
-    
-    const [error, setError] = useState<any | null>(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [status, setStatus] = useState(false);
-
-
-    // const ScoreContext = React.createContext(0);
-    // const [message, setMessage] = useState("");
-    // const [scores, setScores] = useState(0);
-
-    useEffect(()=>{
-        fetch(url+query_params)
+        fetch(url, config)
             .then(res => res.json())
-            .then(
-                (json) => { 
-                    setStatus(json.status);
-                    // setMessage(json.message);
-                    json.data.map(data =>{
-                        // const dayInMonth=moment(data.updateAt).daysInMonth()//今月は何日あるか
-                        const indexDate=moment(data.updateAt).date()-1;
-                        if(data.ranking==1){
-                            score.daysScore[indexDate]+=(5-data.ranking);//5-data.rankingでポイント
-                        }else if(data.ranking==2){
-                            score.daysScore[indexDate]+=(5-data.ranking);
-                        }else if(data.ranking==3){
-                            score.daysScore[indexDate]+=(5-data.ranking);
-                        }else{
-                            score.daysScore[indexDate]+=(5-data.ranking);
-                        }
-                    })
-                    let total=0;
-                    score.daysScore.map(scoreDay=>{
-                        total+=scoreDay;
-                        score.total.push(total);
-                    })
-
-                    setIsLoaded(true);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
-    }, [])
-
-    if(status) {
-        return <div>Error: {error.message}</div>;
-    }else if (!isLoaded){
-        return <div>Loading..</div>;
-    }else{
-        return(
-            <div className="col-xl-8 col-lg-7">
-                <div className="card shadow mb-4">
-                    <MainChartHeader/>
-                    <div className="card-body">
-                        <ScoreContext.Provider value={score}>
-                        <MainChartBody />
-                        </ScoreContext.Provider>
-                    </div>
+            .then((res) => { 
+                res.data.forEach((data:any)=>{
+                    const indexDate=moment(data.updateAt).date()-1;
+                    if(data.ranking==1){
+                        score.daysScore[indexDate]+=(5-data.ranking);//5-data.rankingでポイント
+                    }else if(data.ranking==2){
+                        score.daysScore[indexDate]+=(5-data.ranking);
+                    }else if(data.ranking==3){
+                        score.daysScore[indexDate]+=(5-data.ranking);
+                    }else{
+                        score.daysScore[indexDate]+=(5-data.ranking);
+                    }
+                });
+                let total=0;
+                score.daysScore.map(scoreDay=>{
+                    total+=scoreDay;
+                    score.total.push(total);
+                })
+                setToday(today)
+                setDays(score.days)
+                setTotal(score.total)
+            })
+            .catch(err => console.log(err))
+    },[])
+    return(
+        <div className="col-xl-8 col-lg-7">
+            <div className="card shadow mb-4">
+                <TitleContext.Provider value={today}>
+                <MainChartHeader/>
+                </TitleContext.Provider>
+                <div className="card-body">
+                    <DaysContext.Provider value={days}>
+                    <TotalScoreContext.Provider value={total}>
+                    <MainChartBody />
+                    </TotalScoreContext.Provider>
+                    </DaysContext.Provider>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
+
+
+export default MainChart
+
