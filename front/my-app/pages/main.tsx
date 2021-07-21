@@ -3,17 +3,11 @@ import CardHolder from '../components/cardHolder';
 import MainChart from '../components/mainChart';
 import SubChart from '../components/subChart';
 import DarbyChart from '../components/darbyChart';
-import {Topbar} from '../common/topbar';
 
 class Main extends Component {
     render() {
         return (
             <div id="content">
-
-                    {/*-- Topbar */}
-                    <Topbar/>
-                    {/*-- End of Topbar */}
-
                       {/*-- Begin Page Content */}
                       <div className="container-fluid">
 
