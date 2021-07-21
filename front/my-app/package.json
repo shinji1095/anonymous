@@ -10,12 +10,16 @@
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
-    "cors": "^2.8.5",
+    "build": "^0.1.4",
+    "chart.js": "^3.4.1",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.1",
+    "moment": "^2.29.1",
     "next": "11.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-chartjs-2": "^3.0.3",
+    "react-dom": "17.0.2",
+    "start": "^5.1.0"
   },
   "devDependencies": {
     "@types/react": "17.0.14",
