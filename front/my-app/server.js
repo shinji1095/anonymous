@@ -4,7 +4,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
-const SERVER_URL = process.env.SERVER_URL || 'http://localhost:8080'
+const SERVER_URL = process.env.SERVER_URL || 'https://anonymous-bk.herokuapp.com/'
 
 const app = next({ dev })
 const handle = app.getRequestHandler()

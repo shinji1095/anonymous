@@ -17,7 +17,7 @@ export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
         const func = async () => {
           const liff = (await import('@line/liff')).default
           console.log('import liff')
-          await liff.init({ liffId: process.env.LIFF_ID!})
+          await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID || "1655688058-yvdQp0ko"})
           if (!unmounted) {
             setLiff(liff)
           }
