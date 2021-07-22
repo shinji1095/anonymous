@@ -4,9 +4,6 @@ import { useState } from 'react';
 import App from './app';
 import { Login } from './login';
 
-import { UserIdContext } from '../contexts/appContext';
-import { GroupIdContext } from '../contexts/appContext';
-
 const Index = () => {
     const [login, setLogin] = useState<boolean>(false);
     const [userID, setUserID] = useState<number>(0)
@@ -23,15 +20,19 @@ const Index = () => {
     }
     return (
         <>
-            <UserIdContext.Provider value={{setUserIdFunc:setUserIdFunc}}>
-            <GroupIdContext.Provider value={{setGroupIdFunc:setGroupIdFunc}}>
-                {
-                    !login 
-                    ? <Login setLoginFunc={setLoginFunc} setGroupIdFunc={setGroupIdFunc}/> 
-                    : <App groupID={groupID} setGroupIDFunc={setGroupIdFunc}/>
-                }
-            </GroupIdContext.Provider>
-            </UserIdContext.Provider>
+            {
+                !login 
+                ? <Login 
+                    setLoginFunc={setLoginFunc} 
+                    setGroupIdFunc={setGroupIdFunc} 
+                    setUserIdFunc={setUserIdFunc}
+                /> 
+                : <App 
+                    userID={userID} 
+                    groupID={groupID} 
+                    setGroupIDFunc={setGroupIdFunc}
+                />
+            }
         </>
     );
 }

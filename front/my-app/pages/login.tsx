@@ -13,8 +13,15 @@ interface UserData {
   password: string
 }
 
-export const Login: FC<{setLoginFunc: (login: boolean) => void ,setGroupIdFunc: (groupID:number) => void
-                    }> = ({setLoginFunc, setGroupIdFunc}) => {
+export const Login: FC<{
+                        setLoginFunc: (login: boolean) => void ,
+                        setGroupIdFunc: (groupID:number) => void,
+                        setUserIdFunc: (userID: number) => void
+                        }> = ({
+                            setLoginFunc, 
+                            setGroupIdFunc, 
+                            setUserIdFunc
+                        }) => {
 
     const [userData, setUserData] = useState<UserData>({email:"",password:""})
     const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,8 +47,8 @@ export const Login: FC<{setLoginFunc: (login: boolean) => void ,setGroupIdFunc: 
             if (data.status){
                 setLoginFunc(true)
                 console.log(data)
-                alert(data.user.groupID)
                 setGroupIdFunc(data.user.groupID)
+                setUserIdFunc(data.user.id)
             }
         })
         .catch(err => console.log(err))

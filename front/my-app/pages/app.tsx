@@ -3,8 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
 
-import { useState } from 'react'
-import { FC } from 'react'
+import { 
+    useState,
+    useEffect,
+    FC 
+} from 'react'
 
 import { Topbar } from '../common/topbar'
 import Sidebar from '../common/sidebar';
@@ -13,12 +16,48 @@ import Logout from '../components/logout';
 import Footer from '../common/footer'
 import Groupreg from './groupReg'
 
-export const App: FC<{groupID: number, setGroupIDFunc: (groupID: number)=>void}> 
-                    = ({groupID, setGroupIDFunc}) => {
-    // const [groupID, setGroupID] = useState<number | null>();
-    // const setGroupIDFunc = (groupID:number):void => {
-    //     setGroupID(groupID)
-    // }
+interface User{
+    firstname: string
+    lastname: string
+    email: string
+    groupID: number
+    password: string
+}
+
+const initUser = {
+    firstname:"",
+    lastname: "",
+    email:"",
+    groupID:0,
+    password:""
+}
+
+export const App: FC<{
+                        userID: number ,
+                        groupID: number, 
+                        setGroupIDFunc: (groupID: number)=>void
+                    }> 
+                    = ({
+                        userID,
+                        groupID, 
+                        setGroupIDFunc
+                    }) => {
+    const [userData, setUserData] = useState<User>(initUser)
+    console.log("userData: ",userData)
+    useEffect(() => {
+        console.log("userID: ", userID)
+        let url = "/api/user/" + userID
+        if (userID){
+            fetch(url)
+            .then(data => data.json())
+            .then(data => 
+                {
+                    console.log(data.user)
+                    setUserData(data.user)}
+                )
+            .catch(err => console.log(err))
+        }
+    }, [userID])
     return (
         
         <div id="page-top">
@@ -48,15 +87,13 @@ export const App: FC<{groupID: number, setGroupIDFunc: (groupID: number)=>void}>
 
             {/*-- Content Wrapper */}
             <div id="content-wrapper" className="d-flex flex-column">
-                {/*-- Topbar */}
-                <Topbar/>
-                {/*-- End of Topbar */}
+                {
+                    userData.firstname && <Topbar userName={userData.firstname+ " " + userData.lastname}/>
+                }
 
-                {/*-- Main Content */}
                 {
                     groupID ? <Main />: <Groupreg setGroupIDFunc={setGroupIDFunc}/>
                 }
-                {/*-- End of Main Content */}
 
                 {/*-- Footer */}
                 <Footer />
