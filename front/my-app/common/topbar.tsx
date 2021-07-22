@@ -5,6 +5,7 @@ import {
 
 import Script from 'next/dist/client/script'
 
+import liff from '@line/liff/dist/lib'
 import { buildReplyText } from 'line-message-builder'
 
 export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {

@@ -5,8 +5,6 @@ import React, { useCallback } from 'react';
 import { useState } from 'react';
 import { FC } from 'react';
 
-import { UserIdContext } from '../contexts/appContext';
-import { GroupIdContext } from '../contexts/appContext';
 
 interface UserData {
   email: string
