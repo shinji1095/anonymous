@@ -15,7 +15,10 @@ export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
       if (!liff.isLoggedIn()) {
         liff.login()
       }
-      liff.shareTargetPicker([buildReplyText(message)])
+      liff.shareTargetPicker([{
+        'type': 'text',
+        'text': 'Hello, World!'
+    }])
         .then(() =>
           console.log('send: ', message)
         ).catch((err: Error) =>
