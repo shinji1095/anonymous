@@ -5,9 +5,6 @@ import React, { useCallback } from 'react';
 import { useState } from 'react';
 import { FC } from 'react';
 
-import { UserIdContext } from '../contexts/appContext';
-import { GroupIdContext } from '../contexts/appContext';
-
 interface UserData {
   email: string
   password: string
@@ -44,11 +41,13 @@ export const Login: FC<{
         fetch(url, config)
         .then(data => data.json())
         .then(data => {
+            console.log(data)
             if (data.status){
                 setLoginFunc(true)
-                console.log(data)
                 setGroupIdFunc(data.user.groupID)
                 setUserIdFunc(data.user.id)
+            }else{
+                alert("login failed")
             }
         })
         .catch(err => console.log(err))
