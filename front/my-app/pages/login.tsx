@@ -5,13 +5,16 @@ import React, { useCallback } from 'react';
 import { useState } from 'react';
 import { FC } from 'react';
 
+import { UserIdContext } from '../contexts/appContext';
+import { GroupIdContext } from '../contexts/appContext';
+
 interface UserData {
   email: string
   password: string
 }
 
-export const Login: FC<{setLoginFunc: (login: boolean) => void
-                    }> = ({setLoginFunc}) => {
+export const Login: FC<{setLoginFunc: (login: boolean) => void ,setGroupIdFunc: (groupID:number) => void
+                    }> = ({setLoginFunc, setGroupIdFunc}) => {
 
     const [userData, setUserData] = useState<UserData>({email:"",password:""})
     const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +39,9 @@ export const Login: FC<{setLoginFunc: (login: boolean) => void
         .then(data => {
             if (data.status){
                 setLoginFunc(true)
+                console.log(data)
+                alert(data.user.groupID)
+                setGroupIdFunc(data.groupID)
             }
         })
         .catch(err => console.log(err))
