@@ -42,7 +42,7 @@ export default class ForgetPassword extends Component {
                                                 <div className="text-center">
                                                     <h1 className="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
                                                     <p className="mb-4">We get it, stuff happens. Just enter your email address below
-                                                        and we'll send you a link to reset your password!</p>
+                                                        and we&apos;ll send you a link to reset your password!</p>
                                                 </div>
                                                 <form className="user">
                                                     <div className="form-group">

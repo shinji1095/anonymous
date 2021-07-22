@@ -1,8 +1,52 @@
 import { 
     FC,
+    useState,
+    useEffect,
+    useCallback
     } from 'react'
 
+import Script from 'next/dist/client/script'
+
+import type Liff from '@line/liff'
+
 export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
+    const [message, setMessage] = useState<string>('')
+    const [liff, setLiff] = useState<typeof Liff>()
+    useEffect(() => {
+        let unmounted = false
+        const func = async () => {
+          const liff = (await import('@line/liff')).default
+          console.log('import liff')
+          await liff.init({ liffId: process.env.LIFF_ID!})
+          if (!unmounted) {
+            setLiff(liff)
+          }
+        }
+        func()
+        const cleanup = () => {
+          unmounted = true
+        }
+
+        return cleanup
+    }, [])
+
+    let pushShareTargetPicker = useCallback(() =>{
+        if(liff)
+            liff.init({ liffId:"1655688058-yvdQp0ko" }).then(() => {
+                if (!liff.isLoggedIn()) {
+                    liff.login()
+                }
+                liff.shareTargetPicker([{
+                    'type': 'text',
+                    'text': 'Hello, World!'
+                }])
+                .then(() =>
+                console.log('send: ', message)
+                ).catch((err: Error) =>
+                alert(err)
+                )
+        })}, [liff])
+
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
             {/*-- Sidebar Toggle (Topbar) */}
@@ -199,7 +243,10 @@ export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
                         </a>
                     </div>
                 </li>
+                <button onClick={pushShareTargetPicker}>
+                </button>
             </ul>
+            <Script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></Script>
         </nav>
 
     )

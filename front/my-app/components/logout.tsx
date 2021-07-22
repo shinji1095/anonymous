@@ -22,7 +22,7 @@ class Logout extends Component {
                           </button>
                       </div>
                       <div className="modal-body">Select Logout below if you are ready to end your current session.</div>
-                   '   <div className="modal-footer">
+                      <div className="modal-footer">
                           <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                           <Logout_button/>
                       </div>
