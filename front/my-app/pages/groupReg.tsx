@@ -68,9 +68,9 @@ const Groupreg:FC<{ setGroupIDFunc : (groupID:number) => void}> = ({setGroupIDFu
     return (
         <div className="container">
             <div className="text-center">
-                <h2>Let's make a group!</h2>
+                <h2>Let&apos;s make a group!</h2>
                 <p className="lead">
-                    If you make a group, you can share your weekly assginment, motivate each other, get notices which your gourp member start to do assignment. You can share the motivation against weekly assignment through this app. Before starting to use this, Let's make a group and register the weekly assignment!
+                    If you make a group, you can share your weekly assginment, motivate each other, get notices which your gourp member start to do assignment. You can share the motivation against weekly assignment through this app. Before starting to use this, Let&apos;s make a group and register the weekly assignment!
                 </p>
             </div>
             <hr />
