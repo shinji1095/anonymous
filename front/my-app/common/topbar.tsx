@@ -1,8 +1,26 @@
 import { 
     FC,
+    useState,
     } from 'react'
 
+import Script from 'next/dist/client/script'
+
+import { buildReplyText } from 'line-message-builder'
+
 export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
+    const [message, setMessage] = useState<string>('')
+  const pushShareTargetPicker = () =>
+    liff.init({ liffId:"1655688058-yvdQp0ko" }).then(() => {
+      if (!liff.isLoggedIn()) {
+        liff.login()
+      }
+      liff.shareTargetPicker([buildReplyText(message)])
+        .then(() =>
+          console.log('send: ', message)
+        ).catch((err: Error) =>
+          alert(err)
+        )
+    })
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
             {/*-- Sidebar Toggle (Topbar) */}
@@ -199,7 +217,10 @@ export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
                         </a>
                     </div>
                 </li>
+                <button onClick={pushShareTargetPicker}>
+                </button>
             </ul>
+            <Script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></Script>
         </nav>
 
     )
