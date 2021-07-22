@@ -25,7 +25,11 @@ const Index = () => {
         <>
             <UserIdContext.Provider value={{setUserIdFunc:setUserIdFunc}}>
             <GroupIdContext.Provider value={{setGroupIdFunc:setGroupIdFunc}}>
-                {!login ? <Login setLoginFunc={setLoginFunc} setGroupIdFunc={setGroupIdFunc}/> :<App/>}
+                {
+                    !login 
+                    ? <Login setLoginFunc={setLoginFunc} setGroupIdFunc={setGroupIdFunc}/> 
+                    : <App groupID={groupID} setGroupIDFunc={setGroupIdFunc}/>
+                }
             </GroupIdContext.Provider>
             </UserIdContext.Provider>
         </>

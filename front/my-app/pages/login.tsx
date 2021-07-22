@@ -41,7 +41,7 @@ export const Login: FC<{setLoginFunc: (login: boolean) => void ,setGroupIdFunc: 
                 setLoginFunc(true)
                 console.log(data)
                 alert(data.user.groupID)
-                setGroupIdFunc(data.groupID)
+                setGroupIdFunc(data.user.groupID)
             }
         })
         .catch(err => console.log(err))

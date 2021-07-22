@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Script from 'next/script'
 
 import { useState } from 'react'
+import { FC } from 'react'
 
 import { Topbar } from '../common/topbar'
 import Sidebar from '../common/sidebar';
@@ -12,11 +13,12 @@ import Logout from '../components/logout';
 import Footer from '../common/footer'
 import Groupreg from './groupReg'
 
-export const App = () => {
-    const [groupID, setGroupID] = useState<number | null>();
-    const setGroupIDFunc = (groupID:number):void => {
-        setGroupID(groupID)
-    }
+export const App: FC<{groupID: number, setGroupIDFunc: (groupID: number)=>void}> 
+                    = ({groupID, setGroupIDFunc}) => {
+    // const [groupID, setGroupID] = useState<number | null>();
+    // const setGroupIDFunc = (groupID:number):void => {
+    //     setGroupID(groupID)
+    // }
     return (
         
         <div id="page-top">
