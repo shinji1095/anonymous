@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-import { useEffect } from 'react'
 import { useCallback } from 'react'
-import { FC } from "react" 
+import { useUser } from '../hooks/useUser'
+import {useRouter} from "next/router"
+import Layout from "../common/layout"
+import GroupAll from "../components/groupAll"
 
 interface AssData {
     name: string
@@ -12,9 +14,11 @@ interface AssData {
 
 const initAss: AssData = {name: "", due: "", groupID:0}
 
-const Groupreg:FC<{ setGroupIDFunc : (groupID:number) => void}> = ({setGroupIDFunc}) => {
+const Groupreg = () => {
     const [groupName, setGroupName] = useState<string>("")
     const [assData, setAssData] = useState<AssData>(initAss)
+    const {user, loading} = useUser()
+    const router = useRouter()
 
     const handleChangeGroupName = (e:React.ChangeEvent<HTMLInputElement>) => setGroupName(e.target.value)
     const handleCahngeAssDataFunc = (name:string) => {
@@ -56,29 +60,48 @@ const Groupreg:FC<{ setGroupIDFunc : (groupID:number) => void}> = ({setGroupIDFu
             if (data.status){
                 let groupID = data.data.id
                 fetch_await(url_a, config({...assData, groupID}))
-                .then(d => setGroupIDFunc(groupID))
+                .then(d => {
+                    console.log(user)
+                    console.log({...user, groupID})
+                    sessionStorage.setItem("user", JSON.stringify({...user, groupID}))
+                    router.push("/app")
+                })
                 .catch(err => console.log(err))
             }
-
         })
         .catch(err => console.log(err))
         
-    }, [groupName, assData])
+    }, [groupName, assData, user])
 
     return (
+        <Layout>
         <div className="container">
-            <div className="text-center">
+            <div className="text-center my-4">
                 <h2>Let&apos;s make a group!</h2>
                 <p className="lead">
                     If you make a group, you can share your weekly assginment, motivate each other, get notices which your gourp member start to do assignment. You can share the motivation against weekly assignment through this app. Before starting to use this, Let&apos;s make a group and register the weekly assignment!
                 </p>
             </div>
-            <hr />
-            <div className="row">
-                <div className="col-lg-6 md-4">
-                    <div className="mb-3">
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Group Name</label>
-                        <input type="text" onChange={handleChangeGroupName} className="form-control" id="exampleFormControlInput1" placeholder="ひびきの！"/>
+            <hr className="my-5"/>
+            <div className="row mt-5">
+                
+
+                
+                <div className="col-lg-6 mb-4">
+                    <div className="card mb-5">
+                        <div className="card-header">
+                            Group
+                        </div>
+                        <div className="card-body">
+                        <div className="mb-3">
+                            <label htmlFor="exampleFormControlInput1" className="form-label">Make Group</label>
+                            <input type="text" onChange={handleChangeGroupName} className="form-control" id="exampleFormControlInput1" placeholder="ひびきの！"/>
+                        </div>
+                        <hr />
+                        <div className="mb-5 mt-5">
+                            <GroupAll/>
+                        </div>
+                        </div>
                     </div>
                 </div> 
                 <div className="col-lg-6 md-4">
@@ -107,9 +130,9 @@ const Groupreg:FC<{ setGroupIDFunc : (groupID:number) => void}> = ({setGroupIDFu
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
+        </Layout>
     )
 }
 

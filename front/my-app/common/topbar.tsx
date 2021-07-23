@@ -1,12 +1,10 @@
-import { 
-    FC,
-    } from 'react'
-
 import Script from 'next/dist/client/script'
 import YaruyoButton from '../components/yaruyoButton'
 import OwataButton from '../components/owataButton'
+import { useUser } from '../hooks/useUser'
 
-export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
+export const Topbar = () => {
+    const {user, loading} = useUser()
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
             {/*-- Sidebar Toggle (Topbar) */}
@@ -193,7 +191,7 @@ export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
                 <li className="nav-item dropdown no-arrow">
                     <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">{userName}</span>
+                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">{user?.firstname + " " + user?.lastname}</span>
                         
                     </a>
                     {/*-- Dropdown - User Information */}

@@ -1,26 +1,19 @@
 import Script from 'next/script';
 import Head from 'next/head';
 import Link from "next/link";
+import {useRouter}  from 'next/router'
 import React, { useCallback } from 'react';
-import { useState } from 'react';
-import { FC } from 'react';
-
+import { useState, useEffect } from 'react';
+import { useUser } from '../hooks/useUser';
 
 interface UserData {
   email: string
   password: string
 }
 
-export const Login: FC<{
-                        setLoginFunc: (login: boolean) => void ,
-                        setGroupIdFunc: (groupID:number) => void,
-                        setUserIdFunc: (userID: number) => void
-                        }> = ({
-                            setLoginFunc, 
-                            setGroupIdFunc, 
-                            setUserIdFunc
-                        }) => {
-
+export const Login = () => {
+    const router = useRouter()
+    const {user, loading} = useUser()
     const [userData, setUserData] = useState<UserData>({email:"",password:""})
     const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserData({...userData, email: e.target.value});
@@ -43,14 +36,19 @@ export const Login: FC<{
         .then(data => data.json())
         .then(data => {
             if (data.status){
-                setLoginFunc(true)
-                console.log(data)
-                setGroupIdFunc(data.user.groupID)
-                setUserIdFunc(data.user.id)
+                sessionStorage.setItem("user", JSON.stringify(data.user))
+                router.push("/app")
             }
         })
         .catch(err => console.log(err))
     }, [userData])
+
+    useEffect(() => {
+        if(!loading && user){
+            sessionStorage.removeItem("user")
+            router.push("/")
+        }
+    }, [loading])
     return (
         <>
             <Head>
@@ -61,15 +59,6 @@ export const Login: FC<{
                 <meta name="author" content=""/>
 
                 <title>Login</title>
-
-                {/*-- Custom fonts for this template--*/}
-                <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
-                <link
-                    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-                    rel="stylesheet"/>
-
-                {/*-- Custom styles for this template--*/}
-                <link href="css/sb-admin-2.min.css" rel="stylesheet"/>
             </Head>
             <div className="container">
 
@@ -136,15 +125,15 @@ export const Login: FC<{
                 </div>
                 </div>
             </div>
-            {/*-- Bootstrap core JavaScript--*/}
-            <Script src="vendor/jquery/jquery.min.js"></Script>
-            <Script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></Script>
+            {/*-- Bootstrap core JavaScript-*/}
+        <Script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" strategy="beforeInteractive"></Script>
+        <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></Script> 
 
-            {/*-- Core plugin JavaScript--*/}
-            <Script src="vendor/jquery-easing/jquery.easing.min.js"></Script>
+        {/*-- Core plugin JavaScript-*/}
+        {/* <Script src="vendor/jquery-easing/jquery.easing.min.js"></Script> */}
 
-            {/*-- Custom scripts for all pages--*/}
-            <Script src="js/sb-admin-2.min.js"></Script>
+        {/*-- Custom scripts for all pages-*/}
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/js/sb-admin-2.min.js"></Script>
         </>
     )
 }
