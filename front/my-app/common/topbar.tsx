@@ -2,6 +2,10 @@ import {
     FC,
     } from 'react'
 
+import Script from 'next/dist/client/script'
+import YaruyoButton from '../components/yaruyoButton'
+import OwataButton from '../components/owataButton'
+
 export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
@@ -26,6 +30,22 @@ export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
 
             {/*-- Topbar Navbar */}
             <ul className="navbar-nav ml-auto">
+
+                <div className="topbar-divider d-none d-sm-block "></div>
+                <li className="nav-item">
+                    <a className="nav-link" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <YaruyoButton assName={"数学"}/>
+                    </a>
+                </li>
+                <div className="topbar-divider d-none d-sm-block"></div>
+                <li className="nav-item">
+                    <a className="nav-link" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <OwataButton assName={"数学"}/>
+                    </a>
+                </li>
+                <div className="topbar-divider d-none d-sm-block"></div>
 
                 {/*-- Nav Item - Search Dropdown (Visible Only XS) */}
                 <li className="nav-item dropdown no-arrow d-sm-none" >
@@ -174,8 +194,7 @@ export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
                     <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">{userName}</span>
-                        {/* <img className="img-profile rounded-circle"
-                            src="img/undraw_profile.svg" /> */}
+                        
                     </a>
                     {/*-- Dropdown - User Information */}
                     <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -200,6 +219,7 @@ export const Topbar:FC<{userName:string | undefined}> = ({userName}) => {
                     </div>
                 </li>
             </ul>
+            <Script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></Script>
         </nav>
 
     )
