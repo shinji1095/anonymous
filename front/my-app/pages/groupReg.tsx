@@ -1,9 +1,10 @@
 import React from 'react'
-import Layout from '../common/layout'
 import { useState } from 'react'
 import { useCallback } from 'react'
 import { useUser } from '../hooks/useUser'
 import {useRouter} from "next/router"
+import Layout from "../common/layout"
+import GroupAll from "../components/groupAll"
 
 interface AssData {
     name: string
@@ -75,18 +76,32 @@ const Groupreg = () => {
     return (
         <Layout>
         <div className="container">
-            <div className="text-center">
+            <div className="text-center my-4">
                 <h2>Let&apos;s make a group!</h2>
                 <p className="lead">
                     If you make a group, you can share your weekly assginment, motivate each other, get notices which your gourp member start to do assignment. You can share the motivation against weekly assignment through this app. Before starting to use this, Let&apos;s make a group and register the weekly assignment!
                 </p>
             </div>
-            <hr />
-            <div className="row">
-                <div className="col-lg-6 md-4">
-                    <div className="mb-3">
-                        <label htmlFor="exampleFormControlInput1" className="form-label">Group Name</label>
-                        <input type="text" onChange={handleChangeGroupName} className="form-control" id="exampleFormControlInput1" placeholder="ひびきの！"/>
+            <hr className="my-5"/>
+            <div className="row mt-5">
+                
+
+                
+                <div className="col-lg-6 mb-4">
+                    <div className="card mb-5">
+                        <div className="card-header">
+                            Group
+                        </div>
+                        <div className="card-body">
+                        <div className="mb-3">
+                            <label htmlFor="exampleFormControlInput1" className="form-label">Make Group</label>
+                            <input type="text" onChange={handleChangeGroupName} className="form-control" id="exampleFormControlInput1" placeholder="ひびきの！"/>
+                        </div>
+                        <hr />
+                        <div className="mb-5 mt-5">
+                            <GroupAll/>
+                        </div>
+                        </div>
                     </div>
                 </div> 
                 <div className="col-lg-6 md-4">
