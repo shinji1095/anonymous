@@ -48,7 +48,7 @@ const OwataButton:FC<{assName:string}> = ({assName}) => {
                 )
         })}, [liff])
     return (
-        <span className="mr-2 d-none d-lg-inline text-gray-600 small "
+        <span className="mr-2 d-none d-lg-inline text-white font-weight-bold small "
             onClick={pushShareTargetPicker}>おわた宣言
         </span>
     )

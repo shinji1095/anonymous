@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { useUser } from '../hooks/useUser';
 import moment from 'moment'
 import Card from './card'
 
@@ -55,8 +56,13 @@ export const CardHolder = () =>{
     };
     
     const [cardData, setCardData] = useState<any[]>([]); 
+    const {user, loading} = useUser()
     
     useEffect(() => {
+
+        const url=`api/assignment/${user?.groupID}`;//定数
+
+
         const todayIndex=parseInt(moment().format('e'));
 
         const assignmentsData: dataAssignment[]=[
@@ -71,8 +77,6 @@ export const CardHolder = () =>{
 
         let resultData: Array<any>=[]
 
-        const groupID=1;
-        const url=`api/assignment/${groupID}`;//定数
         
         const config = {
             method: "GET",
@@ -80,11 +84,11 @@ export const CardHolder = () =>{
                 'Accept': 'application/json',
                 "Content-Type": "application/json",
             },
-        }
-
+    }
         fetch(url, config)
             .then(res => res.json())
             .then((res) => { 
+                console.log("res:",res)
                 res.data.forEach((data:any)=>{
                     const transData=getDayIndex(data.due, data.name);
                     for(let i=0;i<=6;i++){
@@ -102,7 +106,7 @@ export const CardHolder = () =>{
                 setCardData(resultData)
             })
             .catch(err => console.log(err))
-        },[])
+        },[loading])
         
         const card=cardData.map((data)=>
                     <Card assign={data.assignmentName} date={data.date}/>
