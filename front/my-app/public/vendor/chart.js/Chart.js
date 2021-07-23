@@ -6431,7 +6431,7 @@ core_defaults._set('pie', {
 	cutoutPercentage: 0
 });
 
-// Pie charts are Doughnut chart with different defaults
+// Pie charts are Doughnut chart with different defaults.
 var controller_pie = controller_doughnut;
 
 var valueOrDefault$7 = helpers$1.valueOrDefault;
