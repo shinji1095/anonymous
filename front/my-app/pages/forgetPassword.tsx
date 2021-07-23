@@ -15,13 +15,6 @@ export default class ForgetPassword extends Component {
                 <meta name="author" content=""/>
 
                 <title>Forgot Password</title>
-
-                <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
-                <link
-                    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-                    rel="stylesheet"/>
-
-                <link href="css/sb-admin-2.min.css" rel="stylesheet"/>
             </Head>
             <div className="bg-gradient-primary">
 
@@ -78,14 +71,14 @@ export default class ForgetPassword extends Component {
                 </div>
 
                 {/*-- Bootstrap core JavaScript-*/}
-                <Script src="vendor/jquery/jquery.min.js"></Script>
-                <Script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></Script>
+        <Script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" strategy="beforeInteractive"></Script>
+        <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></Script> 
 
-                {/*-- Core plugin JavaScript-*/}
-                <Script src="vendor/jquery-easing/jquery.easing.min.js"></Script>
+        {/*-- Core plugin JavaScript-*/}
+        {/* <Script src="vendor/jquery-easing/jquery.easing.min.js"></Script> */}
 
-                {/*-- Custom scripts for all pages-*/}
-                <Script src="js/sb-admin-2.min.js"></Script>
+        {/*-- Custom scripts for all pages-*/}
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/js/sb-admin-2.min.js"></Script>
 
                 </div>
             </>

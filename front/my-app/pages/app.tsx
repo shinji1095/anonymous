@@ -1,58 +1,17 @@
 import Head from 'next/head'
 import Script from 'next/script'
 
-import { 
-    useState,
-    useEffect,
-    FC 
-} from 'react'
-
 import { Topbar } from '../common/topbar'
 import Sidebar from '../common/sidebar';
 import Logout from '../components/logout';
 import Footer from '../common/footer'
-import Main from './main';
-import Groupreg from './groupReg'
+import Main from '../components/main';
+import Groupreg from '../components/groupReg'
+import { useUser } from '../hooks/useUser';
 
-interface User{
-    firstname: string
-    lastname: string
-    email: string
-    groupID: number
-    password: string
-}
-
-const initUser = {
-    firstname:"",
-    lastname: "",
-    email:"",
-    groupID:0,
-    password:""
-}
-
-export const App: FC<{
-                        userID: number ,
-                        groupID: number, 
-                        setGroupIDFunc: (groupID: number)=>void
-                    }> 
-                    = ({
-                        userID,
-                        groupID, 
-                        setGroupIDFunc
-                    }) => {
-    const [userData, setUserData] = useState<User>(initUser)
-    useEffect(() => {
-        let url = "/api/user/" + userID
-        if (userID){
-            fetch(url)
-            .then(data => data.json())
-            .then(data => 
-                {
-                    setUserData(data.user)}
-                )
-            .catch(err => console.log(err))
-        }
-    }, [userID])
+export const App = () => {
+    const {user, loading} = useUser()
+    
     return (
         
         <div id="page-top">
@@ -65,14 +24,6 @@ export const App: FC<{
 
         <title>Anonymous</title>
 
-        {/*-- Custom fonts for this template--*/}
-        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"/>
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet"/>
-
-        {/*-- Custom styles for this template--*/}
-        <link href="css/sb-admin-2.min.css" rel="stylesheet"/>
         </Head>
             {/*-- Page Wrapper -*/}
             <div id="wrapper" >
@@ -82,14 +33,12 @@ export const App: FC<{
 
             {/*-- Content Wrapper */}
             <div id="content-wrapper" className="d-flex flex-column">
-                {
-                    userData.firstname && <Topbar userName={userData.firstname+ " " + userData.lastname}/>
-                }
+                    <Topbar />
 
                 {
-                    groupID 
-                    ? <Main userID={userID} groupID={groupID}/>
-                    : <Groupreg setGroupIDFunc={setGroupIDFunc}/>
+                    user?.groupID 
+                    ? <Main />
+                    : <Groupreg />
                 }
 
                 {/*-- Footer */}
@@ -110,18 +59,14 @@ export const App: FC<{
         {/*-- Logout Modal*/}
         <Logout />
         {/*-- Bootstrap core JavaScript-*/}
-        <Script src="vendor/jquery/jquery.min.js" strategy="beforeInteractive"></Script>
-        <Script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></Script> 
+        <Script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" strategy="beforeInteractive"></Script>
+        <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></Script> 
 
         {/*-- Core plugin JavaScript-*/}
         {/* <Script src="vendor/jquery-easing/jquery.easing.min.js"></Script> */}
 
         {/*-- Custom scripts for all pages-*/}
-        <Script src="js/sb-admin-2.min.js"></Script>
-
-        {/*-- Page level plugins -*/}
-        <Script src="vendor/chart.js/Chart.min.js"></Script>
-
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/js/sb-admin-2.min.js"></Script>
         </div>
     );
 }
