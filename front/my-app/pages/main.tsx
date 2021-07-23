@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
-import CardHolder from './cardHolder';
-import MainChart from './mainChart';
-import SubChart from './subChart';
-import DarbyChart from './darbyChart';
+import CardHolder from '../components/cardHolder';
+import MainChart from '../components/mainChart';
+import SubChart from '../components/subChart';
+import DarbyChart from '../components/darbyChart';
 
-import Sidebar from '../common/sidebar';
-import { Topbar } from '../common/topbar';
-import Footer from '../common/footer';
+import Layout from '../common/layout';
 
 import { useUser } from '../hooks/useUser';
 
 const Main = () => {
     const {user, loading} = useUser()
     return (
+        <Layout>
         <div id="content">
             {/*-- Begin Page Content */}
             <div className="container-fluid">
@@ -161,6 +160,7 @@ const Main = () => {
             {/*-- /.container-fluid */}
 
         </div>
+        </Layout>
     );
 }
 

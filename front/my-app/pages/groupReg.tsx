@@ -1,4 +1,5 @@
 import React from 'react'
+import Layout from '../common/layout'
 import { useState } from 'react'
 import { useCallback } from 'react'
 import { useUser } from '../hooks/useUser'
@@ -66,13 +67,13 @@ const Groupreg = () => {
                 })
                 .catch(err => console.log(err))
             }
-
         })
         .catch(err => console.log(err))
         
     }, [groupName, assData, user])
 
     return (
+        <Layout>
         <div className="container">
             <div className="text-center">
                 <h2>Let&apos;s make a group!</h2>
@@ -114,9 +115,9 @@ const Groupreg = () => {
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
+        </Layout>
     )
 }
 
