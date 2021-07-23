@@ -4,8 +4,7 @@ import { useRouter } from 'next/router';
 
 const Logout_button = () => {
     const router = useRouter();
-
-    return <button className="btn btn-primary"onClick={() => router.push("/")}>Logout</button>
+    return <button className="btn btn-primary"onClick={() => router.push("/login")}>Logout</button>
 }
 
 class Logout extends Component {
