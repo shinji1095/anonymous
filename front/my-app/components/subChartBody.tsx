@@ -81,7 +81,7 @@ export default function SubChartBody(){
         return (
             <div className="card-body">
 
-                    <Pie data={data} options={config.options} />
+                    <Pie type={Pie} data={data} options={config.options} />
 
                 <div className="mt-4 text-center small">
 
