@@ -8,7 +8,7 @@ export const CHART_COLORS = {
     green: '#7fff7f',
     blue: '#7f7fff',
     purple: '#bf7fff',
-    lightblue: '#7fbfff'
+    lightblue: '#7fbfff',
   };
   
   const NAMED_COLORS = [
@@ -62,18 +62,20 @@ export default function SubChartBody(){
         options: {
           responsive: true,
 
+          //maintainAspectRatio: false,
+
           plugins: {
 
             legend: {
-              position: 'none',
+              position: 'bottom',
             },
 
             // title: {
-            //   display: true,
+            //     display: true,
+            //     text: 'aaa',
+            //  },
 
-            //   text: 'none'
-            // }
-          }
+          },
         },
       };
 
@@ -81,23 +83,9 @@ export default function SubChartBody(){
         return (
             <div className="card-body">
 
+                <div id="wrapper">
                     <Pie type={Pie} data={data} options={config.options} />
-
-                <div className="mt-4 text-center small">
-
-                    <span className="mr-2">
-                        <i className="fas fa-circle" style={{color: CHART_COLORS.red}}></i> あか
-                    </span>
-
-                    <span className="mr-2">
-                        <i className="fas fa-circle" style={{color: CHART_COLORS.orange}}></i> みどり
-                    </span>
-
-                    <span className="mr-2">
-                        <i className="fas fa-circle" style={{color: CHART_COLORS.yellow}}></i> きいろ
-                    </span>
-
-                </div>
+                </div>               
 
             </div>
 
