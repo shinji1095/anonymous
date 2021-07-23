@@ -109,9 +109,9 @@ export const CardHolder = () =>{
         )
 
         return (
-            <div>
+            <>
                 {card}
-            </div>
+            </>
     )
 }
 
