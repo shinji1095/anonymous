@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import Script from 'next/script'
 
 import { 
@@ -11,9 +9,9 @@ import {
 
 import { Topbar } from '../common/topbar'
 import Sidebar from '../common/sidebar';
-import Main from './main';
 import Logout from '../components/logout';
 import Footer from '../common/footer'
+import Main from './main';
 import Groupreg from './groupReg'
 
 interface User{
@@ -43,16 +41,13 @@ export const App: FC<{
                         setGroupIDFunc
                     }) => {
     const [userData, setUserData] = useState<User>(initUser)
-    console.log("userData: ",userData)
     useEffect(() => {
-        console.log("userID: ", userID)
         let url = "/api/user/" + userID
         if (userID){
             fetch(url)
             .then(data => data.json())
             .then(data => 
                 {
-                    console.log(data.user)
                     setUserData(data.user)}
                 )
             .catch(err => console.log(err))
@@ -92,7 +87,9 @@ export const App: FC<{
                 }
 
                 {
-                    groupID ? <Main />: <Groupreg setGroupIDFunc={setGroupIDFunc}/>
+                    groupID 
+                    ? <Main userID={userID} groupID={groupID}/>
+                    : <Groupreg setGroupIDFunc={setGroupIDFunc}/>
                 }
 
                 {/*-- Footer */}
