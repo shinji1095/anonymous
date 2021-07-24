@@ -30,26 +30,44 @@ export default function MainChartBody(){
     }
 
     const options = {
-        scales: {
-                xAxis: [{
-                    scaleLabel: {
-                        display: true,
-                        lfontSabelString: "date",
+
+        plugins:{
+            legend:{
+                labels:{
+                    font:{
+                        size:15
                     }
-                }],
-                yAxis: [{
-                    ticks: {
-                        padding: 10,
-                        min: 0,
-                        stepSize: 5,
-                        beginAtZero: true
-                    },
-                    title: {
-                        display: true,
-                        text: "score"
-                    }
-                }]
+                }
             }
+        },
+
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: "date",
+                    font:{
+                        size:20,
+                        style: "oblique"
+                    }
+                }
+            },
+            y: {
+                min: 0,
+                suggestedMax: 20,
+                ticks: {
+                    stepSize: 5
+                },
+                title: {
+                    display: true,
+                    text: "score",
+                    font:{
+                        size:20,
+                        style: "oblique"
+                    }
+                }
+            }
+        }
     }
 
     return(
