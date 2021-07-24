@@ -31,25 +31,32 @@ export default function MainChartBody(){
 
     const options = {
         scales: {
-                xAxis: [{
-                    scaleLabel: {
-                        display: true,
-                        lfontSabelString: "date",
+            x: {
+                title: {
+                    display: true,
+                    text: "date",
+                    font:{
+                        size:20,
+                        family: "Arial"
                     }
-                }],
-                yAxis: [{
-                    ticks: {
-                        padding: 10,
-                        min: 0,
-                        stepSize: 5,
-                        beginAtZero: true
-                    },
-                    title: {
-                        display: true,
-                        text: "score"
+                }
+            },
+            y: {
+                min: 0,
+                suggestedMax: 20,
+                ticks: {
+                    stepSize: 5
+                },
+                title: {
+                    display: true,
+                    text: "score",
+                    font:{
+                        size:20,
+                        family: "Arial"
                     }
-                }]
+                }
             }
+        }
     }
 
     return(
