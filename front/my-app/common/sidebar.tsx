@@ -100,15 +100,15 @@ const Sidebar = () => {
                 </li>
 
                 {/*-- Divider */}
-                <hr className="sidebar-divider" />
+                {/* <hr className="sidebar-divider" /> */}
 
                 {/*-- Heading */}
-                <div className="sidebar-heading">
+                {/* <div className="sidebar-heading">
                     Addons
-                </div>
+                </div> */}
 
                 {/*-- Nav Item - Pages Collapse Menu */}
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="true" aria-controls="collapsePages">
                         <i className="fas fa-fw fa-folder"></i>
@@ -126,21 +126,21 @@ const Sidebar = () => {
                             <a className="collapse-item" href="blank.html">Blank Page</a>
                         </div>
                     </div>
-                </li>
+                </li> */}
 
                 {/*-- Nav Item - Charts */}
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <a className="nav-link" href="charts.html">
                         <i className="fas fa-fw fa-chart-area"></i>
                         <span>Charts</span></a>
-                </li>
+                </li> */}
 
                 {/*-- Nav Item - Tables */}
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <a className="nav-link" href="tables.html" >
                         <i className="fas fa-fw fa-table"></i>
                         <span>Tables</span></a>
-                </li>
+                </li> */}
 
                 {/*-- Divider */}
                 <hr className="sidebar-divider d-none d-md-block" />

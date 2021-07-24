@@ -32,7 +32,7 @@ const MemberAll = () => {
                     <h6 className="m-0 font-weight-bold text-primary">Member</h6>
                 </div>
                 <div className="card-body">
-                <div className="row justify-content-between">
+                    <div className="row">
                     {
                         users
                         ? users.map(user => {return <Member key={num++} num={num++} user={user}/>})

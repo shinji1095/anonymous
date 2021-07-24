@@ -22,7 +22,7 @@ const  Member:FC<{user:User, num:number}> = ({user, num}) => {
         setColor(colorList[index])
     })
     return (
-        <div className="col-lg-6 mb-4">
+        <div className="col-lg-12 mb-4">
             <div className={"card shadow " + color}>
                 <div className="card-body text-white">
                     {user.firstname + " " + user.lastname}
