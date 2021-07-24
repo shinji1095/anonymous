@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Pie } from 'react-chartjs-2'
+import SumStatus from '../type/sumStatus';
+import { FC } from 'react';
 
 export const CHART_COLORS = {
     red: '#ff7f7f',
@@ -21,33 +23,22 @@ export const CHART_COLORS = {
     CHART_COLORS.lightblue,
   ];
 
-  export const CHART_NAMES = {
-    one: 'さつき',
-    two: 'しんじ',
-    three: 'たか',
-    four: 'よしみつ',
-    five: 'ごっち',
-  };
-  
-  const NAMED_NAMES = [
-    CHART_NAMES.one,
-    CHART_NAMES.two,
-    CHART_NAMES.three,
-    CHART_NAMES.four,
-    CHART_NAMES.five,
-  ];
-
-export default function SubChartBody(){
+const SubChartBody: FC<{sumStatusArray: SumStatus[]}>=({sumStatusArray}) => {
 
     const DATA_COUNT = 5;
     const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
+    let sum = 0;
+    sumStatusArray.map(sumData => sum += sumData.sum);
+    const resultData = sumStatusArray.map( eachSum => eachSum.sum / sum * 100 )
 
     const data = {
-        labels: NAMED_NAMES,
+
+        labels: sumStatusArray.map(sumData => sumData.user.firstname),
+
         datasets: [
             {
             label: 'Dataset 1',
-            data: [1,4,3,4,5],
+            data: resultData,
             backgroundColor: NAMED_COLORS,
             }
         ]
@@ -60,25 +51,19 @@ export default function SubChartBody(){
         data: data,
 
         options: {
-          responsive: true,
 
-          //maintainAspectRatio: false,
+          responsive: true,
 
           plugins: {
 
             legend: {
+
               position: 'bottom',
+
             },
-
-            // title: {
-            //     display: true,
-            //     text: 'aaa',
-            //  },
-
           },
         },
       };
-
 
         return (
             <div className="card-body">
@@ -88,6 +73,7 @@ export default function SubChartBody(){
                 </div>               
 
             </div>
-
         )
 }
+
+export default SubChartBody
