@@ -19,7 +19,7 @@ jobs:
           node-version: 14.x
 
       - name: Install NPM packages
-        run: npm ci
+        run: yarn install
 
       - name: Build Next.js app
-        run: npm run build
+        run: yarn build
