@@ -19,15 +19,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-          
-      - name: chenge directory
-        run: cd front && cd my-app
-        
-      - name: confirm file
-        run: ls
 
       - name: Install NPM packages
         run: yarn install
+        working-directory: ./front/my-app
 
       - name: Build Next.js app
         run: yarn build
+        working-directory: ./front/my-app
