@@ -33,7 +33,7 @@ const getDayIndex=(day: string, assignmentName: string)=>{
     }else if(day==="friday"){
         outData.index=5;
         outData.date="Friday";
-    }else{
+    }else if(day==="saturday"){
         outData.index=6;
         outData.date="Saturday";
     }
@@ -59,8 +59,8 @@ export const CardHolder = () =>{
     const {user, loading} = useUser()
     
     useEffect(() => {
-
-        const url=`api/assignment/${user?.groupID}`;//定数
+        // const url=`api/assignment/${user?.groupID}`;
+        const url=`api/assignment/1`;
 
 
         const todayIndex=parseInt(moment().format('e'));
@@ -86,9 +86,8 @@ export const CardHolder = () =>{
             },
     }
         fetch(url, config)
-            .then(res => res.json())
-            .then((res) => { 
-                console.log("res:",res)
+        .then(res => res.json())
+        .then((res) => { 
                 res.data.forEach((data:any)=>{
                     const transData=getDayIndex(data.due, data.name);
                     for(let i=0;i<=6;i++){
