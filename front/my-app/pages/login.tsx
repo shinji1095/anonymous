@@ -37,7 +37,7 @@ export const Login = () => {
         .then(data => {
             if (data.status){
                 sessionStorage.setItem("user", JSON.stringify(data.user))
-                router.push("/app")
+                router.push("/main")
             }
         })
         .catch(err => console.log(err))

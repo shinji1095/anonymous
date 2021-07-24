@@ -12,12 +12,12 @@ export const DarbyChart = () => {
     const {user, loading} = useUser()
     const [darbyData, setDarbyData] = useState<DarbyData[] | null>()
 
-    const async_effect = async () => {
+    const async_effect =  () => {
         if(user){
-            const url_group = "/api/group/" + user?.groupID
-            await fetch(url_group)
+            const url_group = "/api/group/" + user.groupID
+            fetch(url_group)
             .then(data => data.json())
-            .then(async (json) => {
+            .then(json => {
                 let darbyDataArray: DarbyData[] = []
                 console.log(json)
                 if(json.status){
