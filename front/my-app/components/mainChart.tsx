@@ -9,6 +9,7 @@ import User from '../type/user';
 export const TitleContext = React.createContext<string>("");
 export const DaysContext = React.createContext<number[]>([]);
 export const MenbersTotalContext = React.createContext<any[]>([]);
+export const MenbersNameContext = React.createContext<string[]>([]);
 
 const getDaysArrayByMonth=(dayInMonth:number)=>{
     const arrDays = [];
@@ -27,6 +28,7 @@ export const MainChart = () =>{
     const [today, setToday] = useState<string>("");
     const [days, setDays] = useState<number[]>([]);
     const [menbersTotal, setMenbersTotal] = useState<any[]>([]);
+    const [menbersName, setMenbersName] = useState<string[]>([]);
 
     useEffect(() => {
         const today=moment().format('YYYY-MM-DD')
@@ -47,7 +49,16 @@ export const MainChart = () =>{
             .then((res) => {
                 console.log("groupData: ", res)
                 let group: Group=res.data
-                
+                // const menbetsNumber=group.users.length//グループ内のメンバーの数
+                let menbersTotalArray:any[]=[]
+                let menbersNameArray:string[]=[]
+
+
+
+                // let menbersTotal: any[] = group.users.map(()=> 0)
+                // console.log("menbersTotal", menbersTotal)
+
+
                 group.users.map((user: User)=>{
 
                     const url=`api/do?userID=${user?.id}\&year=${params.year}\&month=${params.month}`//定数
@@ -57,15 +68,15 @@ export const MainChart = () =>{
                         daysScore: [...Array(moment(today).date())].map(()=>0),
                         total: []
                     };
-
-                    let menbersTotal:any[]
+                    
+                    menbersNameArray.push(user.firstname)
 
                     fetch(url)
 
                     .then(res => res.json())
                     .then((userData) => {
-
-                        userData.forEach((data:any)=>{
+                        console.log("userData", userData)
+                        userData.data.forEach((data:any)=>{//ここよくない
                             const indexDate=moment(data.updateAt).date()-1;
                             if(data.ranking==1){
                                 score.daysScore[indexDate]+=(5-data.ranking);//5-data.rankingでポイント
@@ -82,14 +93,18 @@ export const MainChart = () =>{
                             total+=scoreDay;
                             score.total.push(total);
                         })
-                        menbersTotal.push(score.total)
-                        console.log("menbersTotal:", menbersTotal)
+                        menbersTotalArray.push(score.total)
+                        // console.log("menbersTotal:", menbersTotal)
                         setToday(today)
                         setDays(score.days)
-                        setMenbersTotal(menbersTotal)
+                        // setMenbersTotal(menbersTotal)
                     })
                     .catch(err => console.log(err))
                 });
+                setMenbersName(menbersNameArray)
+                setMenbersTotal(menbersTotalArray)
+                console.log("setMenbersTotal:", menbersTotal)
+                console.log("setMenbersName:", menbersName)
             })
             .catch(err => console.log(err))
         }
@@ -103,7 +118,9 @@ export const MainChart = () =>{
                 <div className="card-body">
                     <DaysContext.Provider value={days}>
                     <MenbersTotalContext.Provider value={menbersTotal}>
+                    <MenbersNameContext.Provider value={menbersName}>
                         <MainChartBody />
+                    </MenbersNameContext.Provider>
                     </MenbersTotalContext.Provider>
                     </DaysContext.Provider>
                 </div>
