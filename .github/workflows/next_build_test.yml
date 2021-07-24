@@ -19,6 +19,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
+          
+      - name: confirm files
+        run: ls
 
       - name: Install NPM packages
         run: yarn install
