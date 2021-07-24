@@ -20,15 +20,17 @@ export const DarbyChart = () => {
             .then(async (json) => {
                 let darbyDataArray: DarbyData[] = []
                 console.log(json)
-                let users = json.data.users
-                users.map(async (user:User) => {
-                    let data:DarbyData = {
-                        userID:user.id,
-                        name: user.firstname + " " + user.lastname,
-                    }
-                    darbyDataArray.push(data)
-                })
-                setDarbyData(darbyDataArray)
+                if(json.status){
+                    let users = json.data.users
+                    users.map(async (user:User) => {
+                        let data:DarbyData = {
+                            userID:user.id,
+                            name: user.firstname + " " + user.lastname,
+                        }
+                        darbyDataArray.push(data)
+                    })
+                    setDarbyData(darbyDataArray)
+                }
             })
         }
     }
@@ -46,7 +48,7 @@ export const DarbyChart = () => {
                 {
                     darbyData
                     ? darbyData.map(data => {return <Darby key={data.userID} data={data}/>})
-                    : <h2>hello</h2>
+                    : <div className="spinner-border text-primary" role="status"></div>
                 }
             </div>
         </div>
