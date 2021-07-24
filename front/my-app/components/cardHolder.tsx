@@ -106,9 +106,11 @@ export const CardHolder = () =>{
             })
             .catch(err => console.log(err))
         },[loading])
+
+        let num = 1
         
         const card=cardData.map((data)=>
-                    <Card assign={data.assignmentName} date={data.date}/>
+                    <Card key={num++} assign={data.assignmentName} date={data.date}/>
         )
 
         return (

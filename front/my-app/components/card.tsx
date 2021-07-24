@@ -21,6 +21,7 @@ export const Card: FC<{assign:any, date:any}>
                                 setColorState("danger");
                             }
                         },[])
+    let num = 1
     return (
         <div className="col-xl-3 col-md-6 mb-4">
             <div className={`card border-left-${colorState} shadow h-100 py-2`}>
@@ -30,7 +31,7 @@ export const Card: FC<{assign:any, date:any}>
                             <div className={`text-xs3 font-weight-bold text-${colorState} mb-1`}>
                                 Deadline:  {date}</div>
                                     {assign.map((data:any)=>
-                                        <CardSwitch assignment={data}/>
+                                        <CardSwitch key={num++} assignment={data}/>
                                     )}
                         </div>
                     </div>
