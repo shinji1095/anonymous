@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { Line } from 'react-chartjs-2'
-import {TotalScoreContext, DaysContext} from './mainChart'
+import {MenbersTotalContext, DaysContext} from './mainChart'
 
 export default function MainChartBody(){
     const days = useContext(DaysContext);
-    const totalScore = useContext(TotalScoreContext);
+    const totalScore = useContext(MenbersTotalContext);
 
 
 
