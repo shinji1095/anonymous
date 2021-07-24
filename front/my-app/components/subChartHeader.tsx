@@ -3,9 +3,8 @@ import React, { Component } from 'react'
 export default class SubChartHeader extends Component {
     render() {
         return (
-            <div
-                className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+            <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 className="m-0 font-weight-bold text-primary">課題提出レート</h6>
                 <div className="dropdown no-arrow">
                     <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
