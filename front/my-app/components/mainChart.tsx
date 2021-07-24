@@ -1,5 +1,6 @@
 import React, { useState,useEffect} from 'react';
 import moment from 'moment'
+import { useUser } from '../hooks/useUser';
 import MainChartBody from './mainChartBody'
 import MainChartHeader from './mainChartHeader'
 
@@ -20,6 +21,7 @@ export const MainChart = () =>{
         daysScore: number[];
         total: number[];
     }
+    const {user, loading} = useUser()
     const [today, setToday] = useState<string>("");
     const [days, setDays] = useState<number[]>([]);
     const [total, setTotal] = useState<number[]>([]);
@@ -29,7 +31,6 @@ export const MainChart = () =>{
         const dayInMonth=moment(today).daysInMonth()
         
         const params = {
-            userID: "1",//定数 
             year: moment(today).year().toString(),
             month: (moment(today).month()+1).toString()
         }
@@ -40,7 +41,7 @@ export const MainChart = () =>{
             total: []
         };
         
-        const url=`api/do?userID=${params.userID}\&year=${params.year}\&month=${params.month}`//定数
+        const url=`api/do?userID=${user?.id}\&year=${params.year}\&month=${params.month}`//定数
         
         const config = {
             method: "GET",
@@ -52,7 +53,7 @@ export const MainChart = () =>{
 
         fetch(url, config)
             .then(res => res.json())
-            .then((res) => { 
+            .then((res) => {
                 res.data.forEach((data:any)=>{
                     const indexDate=moment(data.updateAt).date()-1;
                     if(data.ranking==1){
@@ -75,17 +76,17 @@ export const MainChart = () =>{
                 setTotal(score.total)
             })
             .catch(err => console.log(err))
-    },[])
+    },[loading])
     return(
         <div className="col-xl-8 col-lg-7">
             <div className="card shadow mb-4">
                 <TitleContext.Provider value={today}>
-                <MainChartHeader/>
+                    <MainChartHeader/>
                 </TitleContext.Provider>
                 <div className="card-body">
                     <DaysContext.Provider value={days}>
                     <TotalScoreContext.Provider value={total}>
-                    <MainChartBody />
+                        <MainChartBody />
                     </TotalScoreContext.Provider>
                     </DaysContext.Provider>
                 </div>

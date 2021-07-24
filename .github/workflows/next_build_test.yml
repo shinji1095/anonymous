@@ -1,0 +1,29 @@
+name: Next.js build test
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+
+      - name: Install NPM packages
+        run: yarn install
+        working-directory: ./front/my-app
+
+      - name: Build Next.js app
+        run: yarn build
+        working-directory: ./front/my-app

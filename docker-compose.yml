@@ -42,7 +42,7 @@ services:
             - ./front/my-app:/app
         ports: 
             - 3000:3000
-        command: "yarn build && yarn start"
+        command: "node server.js"
 
 volumes: 
     db-data:

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useUser } from '../hooks/useUser';
 import moment from 'moment'
 import Card from './card'
+import Assignment from '../type/assignment';
 
 const getDayIndex=(day: string, assignmentName: string)=>{
     interface dayOfWeek{
@@ -33,7 +34,7 @@ const getDayIndex=(day: string, assignmentName: string)=>{
     }else if(day==="friday"){
         outData.index=5;
         outData.date="Friday";
-    }else{
+    }else if(day==="saturday"){
         outData.index=6;
         outData.date="Saturday";
     }
@@ -50,29 +51,29 @@ const getWeekIndex=(index: number)=>{
 export const CardHolder = () =>{
 
     interface dataAssignment{
-        index?:number;
-        assignmentName: string[];
+        assignment: Assignment[];
         date: string;
     };
     
     const [cardData, setCardData] = useState<any[]>([]); 
+    const [assID, setAssID] = useState<number[]>()
     const {user, loading} = useUser()
     
     useEffect(() => {
-
-        const url=`api/assignment/${user?.groupID}`;//定数
+        // const url=`api/assignment/${user?.groupID}`;
+        const url=`api/assignment/1`;
 
 
         const todayIndex=parseInt(moment().format('e'));
 
-        const assignmentsData: dataAssignment[]=[
-            {assignmentName: [], date: ""},
-            {assignmentName: [], date: ""},
-            {assignmentName: [], date: ""},
-            {assignmentName: [], date: ""},
-            {assignmentName: [], date: ""},
-            {assignmentName: [], date: ""},
-            {assignmentName: [], date: ""},
+        const assignmentsData: dataAssignment[] = [
+            {assignment: [], date: ""},
+            {assignment: [], date: ""},
+            {assignment: [], date: ""},
+            {assignment: [], date: ""},
+            {assignment: [], date: ""},
+            {assignment: [], date: ""},
+            {assignment: [], date: ""}
         ]
 
         let resultData: Array<any>=[]
@@ -86,30 +87,36 @@ export const CardHolder = () =>{
             },
     }
         fetch(url, config)
-            .then(res => res.json())
-            .then((res) => { 
-                console.log("res:",res)
-                res.data.forEach((data:any)=>{
-                    const transData=getDayIndex(data.due, data.name);
+        .then(res => res.json())
+        .then((res) => { 
+                let assignments: Assignment[] = res.data 
+                let assIDArray = assignments.map(ass => ass.id)
+                setAssID(assIDArray)
+
+                assignments.forEach((assignment:Assignment)=>{
+                    const transData=getDayIndex(assignment.due, assignment.name);
+                    console.log(transData)
                     for(let i=0;i<=6;i++){
                         if(transData.index===getWeekIndex(todayIndex+i)){
                             assignmentsData[i].date=transData.date
-                            assignmentsData[i].assignmentName.push(transData.assignment)
+                            assignmentsData[i].assignment.push(assignment)
                         }
                     }
                     resultData=assignmentsData.filter(assignmentData => assignmentData.date!=="")
                     if(resultData.length>4){
                         resultData=resultData.splice(0,3)
                     }
-
                 });
                 setCardData(resultData)
             })
             .catch(err => console.log(err))
         },[loading])
+
+        let num = 1
+        console.log(cardData)
         
-        const card=cardData.map((data)=>
-                    <Card assign={data.assignmentName} date={data.date}/>
+        const card=cardData.map((data: dataAssignment)=>
+                    <Card key={num++} assign={data.assignment} date={data.date}/>
         )
 
         return (
