@@ -28,22 +28,7 @@ export const Topbar = () => {
 
             {/*-- Topbar Navbar */}
             <ul className="navbar-nav ml-auto">
-
-                <div className="topbar-divider d-none d-sm-block "></div>
-                <li className="nav-item">
-                    <a className="nav-link" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <YaruyoButton assName={"数学"}/>
-                    </a>
-                </li>
-                <div className="topbar-divider d-none d-sm-block"></div>
-                <li className="nav-item">
-                    <a className="nav-link" href="#" id="userDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <OwataButton assName={"数学"}/>
-                    </a>
-                </li>
-                <div className="topbar-divider d-none d-sm-block"></div>
+                
 
                 {/*-- Nav Item - Search Dropdown (Visible Only XS) */}
                 <li className="nav-item dropdown no-arrow d-sm-none" >

@@ -11,7 +11,6 @@ const Sidebar = () => {
         return handleClick
     }
     
-
     return (
         <div>
             {/*-- Sidebar --*/}
@@ -28,7 +27,7 @@ const Sidebar = () => {
                 <hr className="sidebar-divider my-0" />
 
                 {/*-- Nav Item - Dashboard */}
-                <Link href="/app">
+                <Link href="/main">
                     <li className="nav-item active">
                         <a className="nav-link">
                             <i className="fas fa-fw fa-tachometer-alt"></i>
