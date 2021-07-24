@@ -25,9 +25,16 @@ export const CHART_COLORS = {
 
 const SubChartBody: FC<{sumStatusArray: SumStatus[]}>=({sumStatusArray}) => {
 
-    let sum = 0;
-    sumStatusArray.map(sumData => sum += sumData.sum);
+    let sum:number = 0;
+    console.log(sumStatusArray)
+    sumStatusArray.forEach(sumStatus => {
+      console.log(sumStatus.sum)
+      sum += sumStatus.sum
+    })
+    
+    console.log(sum)
     const resultData = sumStatusArray.map( eachSum => eachSum.sum / sum * 100 )
+    console.log(resultData)
 
     const data = {
 
