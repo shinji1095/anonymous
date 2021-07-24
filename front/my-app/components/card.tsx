@@ -1,7 +1,8 @@
 import { FC, useEffect, useState} from 'react'
+import Assignment from '../type/assignment';
 import CardSwitch from './cardSwitch'
 
-export const Card: FC<{assign:any, date:any}> 
+export const Card: FC<{assign:Assignment[], date:string}> 
                     = ({assign, date}) =>{
                         const [colorState, setColorState] = useState<string>("");
                         useEffect(() => {
@@ -30,8 +31,8 @@ export const Card: FC<{assign:any, date:any}>
                         <div className="col mr-12">
                             <div className={`text-xs3 font-weight-bold text-${colorState} mb-1`}>
                                 Deadline:  {date}</div>
-                                    {assign.map((data:any)=>
-                                        <CardSwitch key={num++} assignment={data}/>
+                                    {assign.map((assignment:Assignment)=>
+                                        <CardSwitch key={num++} assignment={assignment}/>
                                     )}
                         </div>
                     </div>

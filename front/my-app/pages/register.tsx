@@ -61,7 +61,7 @@ export default function Register() {
             if (json.status){
                 alert("register complete!")
                 sessionStorage.setItem("user", JSON.stringify(json.user))
-                router.push("/app")
+                router.push("/groupReg")
             }
         })
         .catch(err => console.log(err))

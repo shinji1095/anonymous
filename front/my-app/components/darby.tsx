@@ -32,7 +32,7 @@ const  Darby:FC<{data:DarbyData}> = ({data}) => {
                         break
                 }
             })
-            let pro = 100 * sum_status / sum_dos
+            let pro = 100 * Math.floor( sum_status / sum_dos * Math.pow( 10, 2 ) ) / Math.pow( 10, 2 ) ;
             setProgress(pro)
             let c = ""
             if (pro <= 20){

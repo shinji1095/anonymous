@@ -1,17 +1,47 @@
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import Link from 'next/dist/client/link';
+import { useUser } from '../hooks/useUser';
 
 const Sidebar = () => {
     const router = useRouter()
+    const {user, loading} = useUser()
     const handleClickFunc = (href:string) => {
         const handleClick = useCallback(() => {
             router.push(href)
         }, [])
         return handleClick
     }
-    
 
+    const makeAssignment = useCallback(() => {
+        let name:string |null = prompt("Fill in the assigment name")
+        let due:string | null = prompt("Fill in the due")
+        if(user){
+            let url = "/api/assignment"
+            let data = {
+                name,
+                due,
+                groupID: Number(user.groupID)
+            }
+            console.log(data)
+            const config = {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(url, config)
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+            })
+            .catch(err => console.log(err))
+
+        }
+    }, [user])
+    
     return (
         <div>
             {/*-- Sidebar --*/}
@@ -28,7 +58,7 @@ const Sidebar = () => {
                 <hr className="sidebar-divider my-0" />
 
                 {/*-- Nav Item - Dashboard */}
-                <Link href="/app">
+                <Link href="/main">
                     <li className="nav-item active">
                         <a className="nav-link">
                             <i className="fas fa-fw fa-tachometer-alt"></i>
@@ -63,22 +93,22 @@ const Sidebar = () => {
                         data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Custom Assignment:</h6>
-                            <a className="collapse-item" onClick={handleClickFunc("/assMake")}>Make</a>
+                            <a className="collapse-item" onClick={makeAssignment}>Make</a>
                             <a className="collapse-item" onClick={handleClickFunc("/assShare")}>Share</a>
                         </div>
                     </div>
                 </li>
 
                 {/*-- Divider */}
-                <hr className="sidebar-divider" />
+                {/* <hr className="sidebar-divider" /> */}
 
                 {/*-- Heading */}
-                <div className="sidebar-heading">
+                {/* <div className="sidebar-heading">
                     Addons
-                </div>
+                </div> */}
 
                 {/*-- Nav Item - Pages Collapse Menu */}
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="true" aria-controls="collapsePages">
                         <i className="fas fa-fw fa-folder"></i>
@@ -96,21 +126,21 @@ const Sidebar = () => {
                             <a className="collapse-item" href="blank.html">Blank Page</a>
                         </div>
                     </div>
-                </li>
+                </li> */}
 
                 {/*-- Nav Item - Charts */}
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <a className="nav-link" href="charts.html">
                         <i className="fas fa-fw fa-chart-area"></i>
                         <span>Charts</span></a>
-                </li>
+                </li> */}
 
                 {/*-- Nav Item - Tables */}
-                <li className="nav-item">
+                {/* <li className="nav-item">
                     <a className="nav-link" href="tables.html" >
                         <i className="fas fa-fw fa-table"></i>
                         <span>Tables</span></a>
-                </li>
+                </li> */}
 
                 {/*-- Divider */}
                 <hr className="sidebar-divider d-none d-md-block" />
