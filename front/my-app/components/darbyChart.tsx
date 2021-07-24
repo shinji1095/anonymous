@@ -45,7 +45,7 @@ export const DarbyChart = () => {
             <div className="card-body">
                 {
                     darbyData
-                    ? darbyData.map(data => {return <Darby data={data}/>})
+                    ? darbyData.map(data => {return <Darby key={data.userID} data={data}/>})
                     : <h2>hello</h2>
                 }
             </div>
