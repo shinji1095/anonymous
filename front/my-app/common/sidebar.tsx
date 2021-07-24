@@ -1,15 +1,46 @@
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import Link from 'next/dist/client/link';
+import { useUser } from '../hooks/useUser';
 
 const Sidebar = () => {
     const router = useRouter()
+    const {user, loading} = useUser()
     const handleClickFunc = (href:string) => {
         const handleClick = useCallback(() => {
             router.push(href)
         }, [])
         return handleClick
     }
+
+    const makeAssignment = useCallback(() => {
+        let name:string |null = prompt("Fill in the assigment name")
+        let due:string | null = prompt("Fill in the due")
+        if(user){
+            let url = "/api/assignment"
+            let data = {
+                name,
+                due,
+                groupID: Number(user.groupID)
+            }
+            console.log(data)
+            const config = {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(url, config)
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+            })
+            .catch(err => console.log(err))
+
+        }
+    }, [user])
     
     return (
         <div>
@@ -62,7 +93,7 @@ const Sidebar = () => {
                         data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Custom Assignment:</h6>
-                            <a className="collapse-item" onClick={handleClickFunc("/assMake")}>Make</a>
+                            <a className="collapse-item" onClick={makeAssignment}>Make</a>
                             <a className="collapse-item" onClick={handleClickFunc("/assShare")}>Share</a>
                         </div>
                     </div>

@@ -19,7 +19,6 @@ export const DarbyChart = () => {
             .then(data => data.json())
             .then(json => {
                 let darbyDataArray: DarbyData[] = []
-                console.log(json)
                 if(json.status){
                     let users = json.data.users
                     users.map(async (user:User) => {

@@ -27,9 +27,7 @@ const YaruyoButton:FC<{assignment:Assignment}> = ({assignment}) => {
                     'type': 'text',
                     'text': 'おれ'+ assignment.name +'やりはじめるけどお前は？'
                 }])
-                .then(() =>
-                console.log('send: ', "message")
-                ).catch((err: Error) =>
+                .catch((err: Error) =>
                 alert(err)
                 )
 
@@ -38,7 +36,6 @@ const YaruyoButton:FC<{assignment:Assignment}> = ({assignment}) => {
                 method: "PUT",
             }
             let url = "/api/do?userID=" + user.id + "&assignmentID=" + assignment.id + "&status=" + status
-            console.log(url)
             fetch(url,config)
             .then(res => res.json())
             .then(json => {
