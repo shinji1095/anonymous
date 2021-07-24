@@ -22,6 +22,9 @@ jobs:
           
       - name: chenge directory
         run: cd ./front/my-app
+        
+      - name: confirm file
+        run: ls
 
       - name: Install NPM packages
         run: yarn install
