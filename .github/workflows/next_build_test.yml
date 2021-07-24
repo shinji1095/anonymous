@@ -21,7 +21,7 @@ jobs:
           node-version: 14.x
           
       - name: chenge directory
-        run: cd ./front/my-app
+        run: cd front && cd my-app
         
       - name: confirm file
         run: ls
