@@ -30,6 +30,17 @@ export default function MainChartBody(){
     }
 
     const options = {
+
+        plugins:{
+            legend:{
+                labels:{
+                    font:{
+                        size:15
+                    }
+                }
+            }
+        },
+
         scales: {
             x: {
                 title: {
