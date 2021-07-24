@@ -3,6 +3,7 @@ import CardSwitch from './cardSwitch'
 
 export const Card: FC<{assign:any, date:any}> 
                     = ({assign, date}) =>{
+    let num = 1
     return (
         <div className="col-xl-3 col-md-6 mb-4">
             <div className="card border-left-primary shadow h-100 py-2">
@@ -12,7 +13,7 @@ export const Card: FC<{assign:any, date:any}>
                             <div className="text-xs3 font-weight-bold text-primary text-uppercase mb-1">
                                 Deadline:  {date}</div>
                                     {assign.map((data:any)=>
-                                        <CardSwitch assignment={data}/>
+                                        <CardSwitch key={num++} assignment={data}/>
                                     )}
                         </div>
                     </div>

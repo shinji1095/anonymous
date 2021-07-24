@@ -61,7 +61,7 @@ const GroupAll = () => {
             <tbody>
                 {
                     groups
-                    ? groups.map(group => {return <Td num={num++} group={group}/>})
+                    ? groups.map(group => {return <Td key={num++} num={num++} group={group}/>})
                     :<h2>hello</h2>
                 }
             </tbody>
