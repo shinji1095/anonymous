@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: 14.x
           
-      - name: confirm files
-        run: ls
+      - name: chenge directory
+        run: cd ./front/my-app
 
       - name: Install NPM packages
         run: yarn install
