@@ -3,8 +3,6 @@ import User from "../type/user";
 
 const readUser = (): User | undefined => {
   const user = sessionStorage.getItem("user");
-  console.log(typeof user)
-  console.log(user)
   return user != null ? JSON.parse(user) : undefined;
 };
 

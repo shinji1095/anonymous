@@ -18,6 +18,7 @@ const  Darby:FC<{data:DarbyData}> = ({data}) => {
     useLayoutEffect(() => {
         fetch_do(data.userID)
         .then(dos => {
+            console.log(dos)
             let sum_status = 0
             let sum_dos = dos.data.length
             dos.data.map((d:any) => {
