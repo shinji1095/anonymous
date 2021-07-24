@@ -25,8 +25,6 @@ export const CHART_COLORS = {
 
 const SubChartBody: FC<{sumStatusArray: SumStatus[]}>=({sumStatusArray}) => {
 
-    const DATA_COUNT = 5;
-    const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
     let sum = 0;
     sumStatusArray.map(sumData => sum += sumData.sum);
     const resultData = sumStatusArray.map( eachSum => eachSum.sum / sum * 100 )
@@ -37,12 +35,28 @@ const SubChartBody: FC<{sumStatusArray: SumStatus[]}>=({sumStatusArray}) => {
 
         datasets: [
             {
-            label: 'Dataset 1',
+            label: '# of Votes',
             data: resultData,
             backgroundColor: NAMED_COLORS,
             }
         ]
     };
+
+    // // 色（アルファチャンネル）に「4d」を追加（ただし、ホバーしたインデックスは除く）
+    // function handleHover(evt, item, legend) {
+    //   legend.chart.data.datasets[0].backgroundColor.forEach((color, index, colors) => {
+    //     colors[index] = index === item.index || color.length === 9 ? color : color + '4D';
+    //   });
+    //   legend.chart.update();
+    // }
+
+    // // 背景色からアルファチャンネルを削除する
+    // function handleLeave(evt, item, legend) {
+    //   legend.chart.data.datasets[0].backgroundColor.forEach((color, index, colors) => {
+    //     colors[index] = color.length === 9 ? color.slice(0, -2) : color;
+    //   });
+    //   legend.chart.update();
+    // }
 
     const config = {
 
@@ -57,8 +71,9 @@ const SubChartBody: FC<{sumStatusArray: SumStatus[]}>=({sumStatusArray}) => {
           plugins: {
 
             legend: {
-
               position: 'bottom',
+              // onHover: handleHover,
+              // onLeave: handleLeave,
 
             },
           },
@@ -70,7 +85,7 @@ const SubChartBody: FC<{sumStatusArray: SumStatus[]}>=({sumStatusArray}) => {
 
                 <div id="wrapper">
                     <Pie type={Pie} data={data} options={config.options} />
-                </div>               
+                </div>
 
             </div>
         )
