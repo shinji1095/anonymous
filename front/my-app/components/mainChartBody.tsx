@@ -37,7 +37,7 @@ export default function MainChartBody(){
                     text: "date",
                     font:{
                         size:20,
-                        family: "Arial"
+                        style: "oblique"
                     }
                 }
             },
@@ -52,7 +52,7 @@ export default function MainChartBody(){
                     text: "score",
                     font:{
                         size:20,
-                        family: "Arial"
+                        style: "oblique"
                     }
                 }
             }
