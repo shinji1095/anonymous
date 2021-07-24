@@ -13,10 +13,6 @@ const YaruyoButton:FC<{assignment:Assignment}> = ({assignment}) => {
     const {user, loading} = useUser()
     const status = 1
 
-    const handleClick = useCallback(() => {
-        
-    }, [user])
-
     let pushShareTargetPicker = useCallback(() =>{
         if(liff)
             liff.init({ liffId:"1655688058-yvdQp0ko" }).then(() => {
@@ -31,6 +27,7 @@ const YaruyoButton:FC<{assignment:Assignment}> = ({assignment}) => {
                 alert(err)
                 )
 
+            })
         if (user){
             const config = {
                 method: "PUT",
@@ -42,7 +39,7 @@ const YaruyoButton:FC<{assignment:Assignment}> = ({assignment}) => {
                 console.log(json)
             })
         }
-        })}, [liff, user])
+    }, [liff, user])
     return (
         <span className="mr-2 d-none d-lg-inline text-white font-weight-bold small "
             onClick={pushShareTargetPicker}>やるよ宣言

@@ -18,8 +18,9 @@ const MemberAll = () => {
             .then(res => res.json())
             .then((data) => {
                 let group: Group = data.data
-                console.log(group.users)
-                setUsers(group.users)
+                if(data.status){
+                    setUsers(group.users)
+                }
             })
 
         }
