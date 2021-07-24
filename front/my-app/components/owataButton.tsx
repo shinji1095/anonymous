@@ -5,28 +5,15 @@ import {
     useCallback
     } from 'react'
 
-import type Liff from '@line/liff'
+import { useLiff } from '../hooks/useLiff'
+import { useUser } from '../hooks/useUser'
+import Assignment from '../type/assignment'
 
 
-const OwataButton:FC<{assName:string}> = ({assName}) => {
-    const [liff, setLiff] = useState<typeof Liff>()
-    useEffect(() => {
-        let unmounted = false
-        const func = async () => {
-          const liff = (await import('@line/liff')).default
-          console.log('import liff')
-          await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID || "1655688058-yvdQp0ko"})
-          if (!unmounted) {
-            setLiff(liff)
-          }
-        }
-        func()
-        const cleanup = () => {
-          unmounted = true
-        }
-
-        return cleanup
-    }, [])
+const OwataButton:FC<{assignment:Assignment}> = ({assignment}) => {
+    const { liff } = useLiff()
+    const {user, loading} = useUser()
+    const status = 2
 
     let pushShareTargetPicker = useCallback(() =>{
         if(liff)
@@ -36,7 +23,7 @@ const OwataButton:FC<{assName:string}> = ({assName}) => {
                 }
                 liff.shareTargetPicker([{
                     'type': 'text',
-                    'text': 'やっと'+ assName +'終わったわーwww'
+                    'text': 'やっと'+ assignment.name +'終わったわーwww'
                 },{
                     'type': 'text',
                     'text': '気持ち良いわーーwww'
@@ -46,7 +33,22 @@ const OwataButton:FC<{assName:string}> = ({assName}) => {
                 ).catch((err: Error) =>
                 alert(err)
                 )
-        })}, [liff])
+
+            })
+            if (user){
+                const config = {
+                    method: "PUT",
+                }
+                let url = "/api/do?userID=" + user.id + "&assignmentID=" + assignment.id + "&status=" + status
+                console.log(url)
+                fetch(url,config)
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json)
+                })
+            }
+            
+        }, [liff, user])
     return (
         <span className="mr-2 d-none d-lg-inline text-white font-weight-bold small "
             onClick={pushShareTargetPicker}>おわた宣言
