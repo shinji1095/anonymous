@@ -3,12 +3,15 @@ import moment from 'moment'
 import { useUser } from '../hooks/useUser';
 import MainChartBody from './mainChartBody'
 import MainChartHeader from './mainChartHeader'
+import Group from '../type/group';
+import User from '../type/user';
 
-export const TitleContext = React.createContext<string>("");
-export const DaysContext = React.createContext<number[]>([]);
-export const TotalScoreContext = React.createContext<number[]>([]);
+export const TitleContext = React.createContext<string>("");//headerに日付を渡す
+export const DaysContext = React.createContext<number[]>([]);//今月の日付を配列で渡す
+export const MenbersTotalContext = React.createContext<any[]>([]);//メンバーのトータルの配列を配列に格納して渡す
+export const MenbersNameContext = React.createContext<string[]>([]);//メンバーの名前を配列に格納
 
-const getDaysArrayByMonth=(dayInMonth:number)=>{
+const getDaysArrayByMonth=(dayInMonth:number)=>{//日付の配列生成
     const arrDays = [];
     for(let i=1;i<=dayInMonth; i++)arrDays.push(i);
     return arrDays;
@@ -24,59 +27,82 @@ export const MainChart = () =>{
     const {user, loading} = useUser()
     const [today, setToday] = useState<string>("");
     const [days, setDays] = useState<number[]>([]);
-    const [total, setTotal] = useState<number[]>([]);
+    const [menbersTotal, setMenbersTotal] = useState<any[]>([]);
+    const [menbersName, setMenbersName] = useState<string[]>([]);
 
     useEffect(() => {
         const today=moment().format('YYYY-MM-DD')
         const dayInMonth=moment(today).daysInMonth()
-        
+
         const params = {
             year: moment(today).year().toString(),
             month: (moment(today).month()+1).toString()
         }
         
-        let score: dataScore={
-            days: getDaysArrayByMonth(dayInMonth),
-            daysScore: [...Array(moment(today).date())].map(()=>0),
-            total: []
-        };
         
-        const url=`api/do?userID=${user?.id}\&year=${params.year}\&month=${params.month}`//定数
-        
-        const config = {
-            method: "GET",
-            headers: {
-                'Accept': 'application/json',
-                "Content-Type": "application/json",
-            },
-        }
+        if(user){
+            let url_group = `/api/group/${user.groupID}`
 
-        fetch(url, config)
+            
+            fetch(url_group)
             .then(res => res.json())
             .then((res) => {
-                res.data.forEach((data:any)=>{
-                    const indexDate=moment(data.updateAt).date()-1;
-                    if(data.ranking==1){
-                        score.daysScore[indexDate]+=(5-data.ranking);//5-data.rankingでポイント
-                    }else if(data.ranking==2){
-                        score.daysScore[indexDate]+=(5-data.ranking);
-                    }else if(data.ranking==3){
-                        score.daysScore[indexDate]+=(5-data.ranking);
-                    }else{
-                        score.daysScore[indexDate]+=(5-data.ranking);
-                    }
+                console.log("groupData: ", res)
+
+                let group: Group=res.data
+                let menbersTotalArray:any[]=[]
+                let menbersNameArray:string[]=[]
+
+                group.users.map((user: User)=>{
+
+                    const url=`api/do?userID=${user?.id}\&year=${params.year}\&month=${params.month}`
+
+                    let score: dataScore={
+                        days: getDaysArrayByMonth(dayInMonth),
+                        daysScore: [...Array(moment(today).date())].map(()=>0),
+                        total: []
+                    };
+                    
+                    menbersNameArray.push(user.firstname)
+
+                    fetch(url)
+
+                    .then(res => res.json())
+                    .then((userData) => {
+                        console.log("userData", userData)
+                        userData.data.forEach((data:any)=>{
+                            const indexDate=moment(data.updateAt).date()-1;
+                            if(data.ranking==1){
+                                score.daysScore[indexDate]+=(5-data.ranking);//5-data.rankingでポイント
+                            }else if(data.ranking==2){
+                                score.daysScore[indexDate]+=(5-data.ranking);
+                            }else if(data.ranking==3){
+                                score.daysScore[indexDate]+=(5-data.ranking);
+                            }else{
+                                score.daysScore[indexDate]+=(5-data.ranking);
+                            }
+                        });
+                        let total=0;
+                        score.daysScore.map(scoreDay=>{
+                            total+=scoreDay;
+                            score.total.push(total);
+                        })
+                        menbersTotalArray.push(score.total)
+                        // console.log("menbersTotal:", menbersTotal)
+                        setToday(today)
+                        setDays(score.days)
+                        // setMenbersTotal(menbersTotal)
+                    })
+                    .catch(err => console.log(err))
                 });
-                let total=0;
-                score.daysScore.map(scoreDay=>{
-                    total+=scoreDay;
-                    score.total.push(total);
-                })
-                setToday(today)
-                setDays(score.days)
-                setTotal(score.total)
+                setMenbersName(menbersNameArray)
+                setMenbersTotal(menbersTotalArray)
+                console.log("setMenbersTotal:", menbersTotal)
+                console.log("setMenbersName:", menbersName)
             })
             .catch(err => console.log(err))
-    },[loading])
+        }
+    },[loading]);
     return(
         <div className="col-xl-8 col-lg-7">
             <div className="card shadow mb-4">
@@ -85,9 +111,11 @@ export const MainChart = () =>{
                 </TitleContext.Provider>
                 <div className="card-body">
                     <DaysContext.Provider value={days}>
-                    <TotalScoreContext.Provider value={total}>
+                    <MenbersTotalContext.Provider value={menbersTotal}>
+                    <MenbersNameContext.Provider value={menbersName}>
                         <MainChartBody />
-                    </TotalScoreContext.Provider>
+                    </MenbersNameContext.Provider>
+                    </MenbersTotalContext.Provider>
                     </DaysContext.Provider>
                 </div>
             </div>
