@@ -6,12 +6,12 @@ import MainChartHeader from './mainChartHeader'
 import Group from '../type/group';
 import User from '../type/user';
 
-export const TitleContext = React.createContext<string>("");
-export const DaysContext = React.createContext<number[]>([]);
-export const MenbersTotalContext = React.createContext<any[]>([]);
-export const MenbersNameContext = React.createContext<string[]>([]);
+export const TitleContext = React.createContext<string>("");//headerに日付を渡す
+export const DaysContext = React.createContext<number[]>([]);//今月の日付を配列で渡す
+export const MenbersTotalContext = React.createContext<any[]>([]);//メンバーのトータルの配列を配列に格納して渡す
+export const MenbersNameContext = React.createContext<string[]>([]);//メンバーの名前を配列に格納
 
-const getDaysArrayByMonth=(dayInMonth:number)=>{
+const getDaysArrayByMonth=(dayInMonth:number)=>{//日付の配列生成
     const arrDays = [];
     for(let i=1;i<=dayInMonth; i++)arrDays.push(i);
     return arrDays;
@@ -48,20 +48,14 @@ export const MainChart = () =>{
             .then(res => res.json())
             .then((res) => {
                 console.log("groupData: ", res)
+
                 let group: Group=res.data
-                // const menbetsNumber=group.users.length//グループ内のメンバーの数
                 let menbersTotalArray:any[]=[]
                 let menbersNameArray:string[]=[]
 
-
-
-                // let menbersTotal: any[] = group.users.map(()=> 0)
-                // console.log("menbersTotal", menbersTotal)
-
-
                 group.users.map((user: User)=>{
 
-                    const url=`api/do?userID=${user?.id}\&year=${params.year}\&month=${params.month}`//定数
+                    const url=`api/do?userID=${user?.id}\&year=${params.year}\&month=${params.month}`
 
                     let score: dataScore={
                         days: getDaysArrayByMonth(dayInMonth),
@@ -76,7 +70,7 @@ export const MainChart = () =>{
                     .then(res => res.json())
                     .then((userData) => {
                         console.log("userData", userData)
-                        userData.data.forEach((data:any)=>{//ここよくない
+                        userData.data.forEach((data:any)=>{
                             const indexDate=moment(data.updateAt).date()-1;
                             if(data.ranking==1){
                                 score.daysScore[indexDate]+=(5-data.ranking);//5-data.rankingでポイント

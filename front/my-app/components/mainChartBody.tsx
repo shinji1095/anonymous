@@ -7,32 +7,59 @@ export default function MainChartBody(){
     const menbersTotal = useContext(MenbersTotalContext);
     const menbersName = useContext(MenbersNameContext);
     const numberChart=menbersTotal.length;
-    let i=0;
-    const menbersDatasets=menbersTotal.map(eachTotal=>{
-        return {label: menbersName[i], data:eachTotal}
-    });
-    // const menbersDatasets:any[]=[];
 
+    interface graphData{
+        label:string,
+        data:number[],
+        lineTension:number,
+        pointRadius:number,
+        pointHoverRadius: number,
+        pointHitRadius: number,
+        pointBorderWidth: number,
+        backgroundColor: string,
+        borderColor: string,
+        pointBackgroundColor: string,
+        pointBorderColor: string,
+        pointHoverBackgroundColor: string,
+        pointHoverBorderColor: string
+    }
+    const menbersDatasets:graphData[]=[]
+    
     for(let num=0;num<numberChart;num++){
+        let color:string=""
+        if(num===0){
+            color='#ff7f7f'
+        }else if(num===1){
+            color='#ffbf7f'
+        }else if(num===2){
+            color='#ffff7f'
+        }else if(num===3){
+            color='#7fff7f'
+        }else if(num===4){
+            color='#7f7fff'
+        }else if(num===5){
+            color='#bf7fff'
+        }else if(num===5){
+            color='#bf7fff'
+        }
         menbersDatasets.push({
                 label: menbersName[num],
                 data: menbersTotal[num],
-                // lineTension: 0.3,
-                // backgroundColor: "rgba(78, 115, 223, 0.05)",
-                // borderColor: "rgba(78, 115, 223, 1)",
-                // pointRadius: 3,
-                // pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                // pointBorderColor: "rgba(78, 115, 223, 1)",
-                // pointHoverRadius: 3,
-                // pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                // pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                // pointHitRadius: 10,
-                // pointBorderWidth: 2,
+                lineTension: 0.3,
+                backgroundColor: color,
+                borderColor: color,
+                pointRadius: 3,
+                pointBackgroundColor: color,
+                pointBorderColor: color,
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: color,
+                pointHoverBorderColor: color,
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
         })
-        console.log(num)
-        console.log("MenbersName",menbersTotal[num])
     }
-    console.log(typeof(menbersDatasets))
+    console.log("MenbersData",menbersDatasets)
+
     const data = {
         labels:days,
         datasets: menbersDatasets
