@@ -3,4 +3,6 @@ FROM node:14-alpine
 EXPOSE 3000
 
 RUN mkdir /app
+RUN cd ./my-app
+RUN yarn install
 WORKDIR /app
