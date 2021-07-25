@@ -46,6 +46,8 @@ export default function SubChart(){
 
                 })
 
+                let index = 0
+
                 group.users.map((user: User)=>{
 
                     const url = `/api/do?userID=${user.id}\&year=${params.year}\&month=${params.month}` //定数
@@ -72,11 +74,14 @@ export default function SubChart(){
 
                         }) 
 
-                        console.log(sumStatusArray)
-                        setSumStatus(sumStatusArray)
+                        if(index++ == 1){
+                            console.log(sumStatusArray)
+                            setSumStatus(sumStatusArray)
+
+                        }
                         
                     })
-
+                    
                     .catch(err => console.log(err))
 
                 });
